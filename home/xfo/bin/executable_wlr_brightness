@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Check if the user wants to increase or decrease the brightness
+if [ "$1" == "up" ]; then
+    increment=0.05
+elif [ "$1" == "down" ]; then
+    increment=-0.05
+else
+    echo "Invalid argument. Must be 'up' or 'down'."
+    exit 1
+fi
+
+direction=$1
+
+shift
+
+OPTIND=1         # Reset in case getopts has been used previously in the shell.
+
+# Parse options to the `my_script` command
+while getopts "v:" opt; do
+    case "$opt" in
+    v)  value=$OPTARG
+        # Check if the value is an integer or a float between 0 and 1
+        if ! [[ "$value" =~ ^[0-1]+(\.[0-9]{0,3}[0-9])?$ ]]; then
+            echo "must be an integer or a float where 0.001<=x<=1"
+            exit 1
+        else
+            if [ "$direction" == "up" ]; then
+                increment=$value
+            fi
+            if [ "$direction" == "down" ]; then
+                increment=-$value
+            fi
+        fi
+        ;;
+      *) echo "Invalid option: -$OPTARG" >&2
+         exit 1
+         ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+# Get the current brightness value
+current_brightness=$(busctl --user get-property rs.wl-gammarelay / rs.wl.gammarelay Brightness | awk '{print $2}')
+
+# Calculate the new brightness value
+new_brightness=$(echo "scale=2; $current_brightness + $increment" | bc)
+
+# Make sure the new brightness value is within the valid range [0, 1]
+new_brightness=$(echo "scale=2; if ($new_brightness < 0) 0 else if ($new_brightness > 1) 1 else $new_brightness" | bc)
+
+# Set the new brightness value
+busctl --user set-property rs.wl-gammarelay / rs.wl.gammarelay Brightness d "$new_brightness"
+
+dunstctl close
+dunstify "wlr_brightness:" "$new_brightness"

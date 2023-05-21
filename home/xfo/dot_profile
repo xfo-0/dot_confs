@@ -1,0 +1,142 @@
+#!/bin/bash
+# export NNN_TRASH=1
+export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
+export NNN_FIFO='/tmp/nnn.fifo'
+# export NNN_BMS="d:$HOME/Documents;h:$HOME/;c:$HOME/.config;m:/run/media;t:$HOME/.local/share/Trash/files"
+
+export NNN_PLUG='a:mtpmount;c:cdpath;D:dotr;d:dragdrop;e:fzopen;f:fd;g:rg;i:preview-tui;l:kdeconnect;m:nmount;n:bulknew;o:openall;p:chmodr;q:cmusq;r:gitroot;s:autojump;t:kittypreview;x:trash;u:umounttree;v:diffs;y:yankr;'
+export BLK="65"
+
+#           Order           | Hex |    Color
+# ------------------------- + --- + -------------
+# Block device              | c1  | DarkSeaGreen1
+# Char device               | e2  | Yellow1
+# Directory                 | 27  | DeepSkyBlue1
+# Executable                | 2e  | Green1
+# Regular                   | 00  | Normal
+# Hard link                 | 60  | Plum4
+# Symbolic link             | 33  | Cyan1
+# Missing OR file details   | f7  | Grey62
+# Orphaned symbolic link    | c6  | DeepPink1
+# FIFO                      | d6  | Orange1
+# Socket                    | ab  | MediumOrchid1
+# Unknown OR 0B regular/exe | c4  | Red1
+# ------------------------- + --- + -------------
+# use 256 hex values followed by a backup
+# CHR="#0a1b2c3d;1234"
+# CHR="#0a1b2c3d;Ba"
+# ------------------------- + --- + -------------
+
+export CHR="Ba"
+export DIR="f6"
+export EXE="89"
+export REG="00"
+export HARDLINK="60"
+export SYMLINK="6f"
+export MISSING="3b"
+export ORPHAN="58"
+export FIFO="06"
+export SOCK="0B"
+export OTHER="7c"
+export NNN_FCOLORS="$BLK$CHR$DIR$EXE$REG$HARDLINK$SYMLINK$MISSING$ORPHAN$FIFO$SOCK$OTHER"
+
+export XDG_RUNTIME_DIR="/run/user/${UID}"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_DATA_HOME="${HOME}/.local/share"
+export XDG_STATE_HOME="${HOME}/.local/state"
+
+export PATH="${HOME}/.local/bin:$PATH"
+export PATH="${HOME}/bin:$PATH"
+export CURL_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+
+export DOTBOT_CONF="${HOME}/git/system/dot/files/install.conf.yaml"
+export DOTBOT_DIR="${HOME}/git/system/dot/files"
+export DOTHOME="${HOME}/git/system/dot/files/home"
+export DOTROOT="${HOME}/git/system/dot/files/root"
+
+export PATH="${HOME}/.local/share/bob/nvim-bin/:$PATH"
+export EDITOR="${HOME}/.local/share/bob/nvim-bin/nvim"
+export NOTES="${HOME}/notes/"
+
+export BROWSER=/usr/bin/qutebrowser
+
+export TERMINAL=/usr/bin/wezterm
+export FLOAT_TERM=/usr/bin/alacritty
+export TERMINFO="${XDG_DATA_HOME}/terminfo"
+export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
+
+export HISTFILE="${XDG_STATE_HOME}/bash/history"
+
+export ZDOTDIR="${HOME}/.config/zsh"
+
+export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
+export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship/cache"
+# export JQ_REPL_JQ=gojq
+
+export TMUX_CONF="${HOME}/.config/tmux/tmux.conf"
+
+export LC_COLLATE="C"
+export COPY_CMD='wl-copy'
+export PASTE_CMD='wl-paste'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+export CM_LAUNCHER=rofi
+export FZ_PICKER='sk'
+export SKIM_DEFAULT_COMMAND="fd --type f ||git ls-tree -r --name-only HEAD || rg --files || ag -l -g \"\" || find ."
+export NAVI_FZF_OVERRIDES='--layout=reverse'
+
+# GPG_TTY=$(tty)
+# export GPG_TTY
+export GNUPGHOME="${XDG_DATA_HOME}/gnupg"
+export PASSWORD_STORE_DIR="${XDG_DATA_HOME}/pass"
+export MBSYNCRC="${HOME}/.mbsyncrc"
+export NOTMUCH_CONFIG="${XDG_CONFIG_HOME}/notmuch/default/config"
+
+export LOCAL_LG="11:57:88:97:67:10"
+export LOCAL_LG_ADR="10.0.0.6:7000"
+
+# export XINITRC="${XDG_CONFIG_HOME}/X11/xinitrc"
+
+export XCURSOR_THEME=BreezeX-Black
+export XCURSOR_SIZE=4
+export XCURSOR_PATH="${XDG_DATA_HOME}/icons:$XCURSOR_PATH"
+
+export QT_QPA_PLATFORMTHEME=qt5ct
+# export QT_STYLE_OVERRIDE=kvantum
+export QT_SCALE_FACTOR=1
+export QT_FONT_DPI=96
+
+# export PATH="${HOME}/.config/sway/bin:$PATH"
+# export GTK2_RC_FILES="/usr/share/themes/B00merang-Blackout/gtk-2.0/gtkrc"
+# export GTK_THEME=B00merang-Blackout
+
+export STACK_ROOT="${XDG_DATA_HOME}/stack"
+
+export CARGO_HOME="${XDG_DATA_HOME}/cargo"
+export PATH="${CARGO_HOME}/bin:$PATH"
+export RUSTUP_HOME="${XDG_DATA_HOME}/rustup"
+
+export JULIA_DEPOT_PATH="${XDG_DATA_HOME}/julia:$JULIA_DEPOT_PATH"
+
+export GOPATH="${XDG_DATA_HOME}/go"
+
+export KERAS_HOME="${XDG_STATE_HOME}/keras"
+export CUDA_CACHE_PATH="${XDG_CACHE_HOME}/nv"
+
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+export MYPY_CACHE_DIR="${XDG_CACHE_HOME}/mypy"
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+export JUPYTER_CONFIG_DIR="${XDG_CONFIG_HOME}/jupyter"
+
+export PATH="${XDG_DATA_HOME}/gem/ruby/3.0.0:$PATH"
+
+export NPM_CONFIG_USERCONFIG="${XDG_CONFIG_HOME}/npm/npmrc"
+export NVM_DIR="${XDG_DATA_HOME}/nvm"
+export NODE_REPL_HISTORY="${XDG_DATA_HOME}/node_repl_history"
+export PNPM_HOME="/home/xfo/.local/share/pnpm"
+
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="${XDG_CONFIG_HOME}/java"
+export ANDROID_HOME="${XDG_DATA_HOME}/android"
+
+export WINEPREFIX="${XDG_DATA_HOME}/wine"

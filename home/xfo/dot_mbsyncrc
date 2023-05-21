@@ -1,0 +1,104 @@
+
+IMAPStore ded.dylan04@gmail.com-remote
+Host imap.gmail.com
+Port 993
+User ded.dylan04@gmail.com
+PassCmd "pass ded.dylan04@gmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore ded.dylan04@gmail.com-local
+Subfolders Verbatim
+Path /home/xfo/.local/share/mail/ded.dylan04@gmail.com/
+Inbox /home/xfo/.local/share/mail/ded.dylan04@gmail.com/INBOX
+
+Channel ded.dylan04@gmail.com
+Expunge Both
+Far :ded.dylan04@gmail.com-remote:
+Near :ded.dylan04@gmail.com-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+
+IMAPStore ded.dylan05@gmail.com-remote
+Host imap.gmail.com
+Port 993
+User ded.dylan05@gmail.com
+PassCmd "pass ded.dylan05@gmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore ded.dylan05@gmail.com-local
+Subfolders Verbatim
+Path /home/xfo/.local/share/mail/ded.dylan05@gmail.com/
+Inbox /home/xfo/.local/share/mail/ded.dylan05@gmail.com/INBOX
+
+Channel ded.dylan05@gmail.com
+Expunge Both
+Far :ded.dylan05@gmail.com-remote:
+Near :ded.dylan05@gmail.com-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+
+IMAPStore ded.dylan07@gmail.com-remote
+Host imap.gmail.com
+Port 993
+User ded.dylan07@gmail.com
+PassCmd "pass ded.dylan07@gmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore ded.dylan07@gmail.com-local
+Subfolders Verbatim
+Path /home/xfo/.local/share/mail/ded.dylan07@gmail.com/
+Inbox /home/xfo/.local/share/mail/ded.dylan07@gmail.com/INBOX
+
+Channel ded.dylan07@gmail.com
+Expunge Both
+Far :ded.dylan07@gmail.com-remote:
+Near :ded.dylan07@gmail.com-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+
+
+IMAPStore dylanduttle07@gmail.com-remote
+Host imap.gmail.com
+Port 993
+User dylanduttle07@gmail.com
+PassCmd "pass dylanduttle07@gmail.com"
+AuthMechs LOGIN
+SSLType IMAPS
+CertificateFile /etc/ssl/certs/ca-certificates.crt
+
+MaildirStore dylanduttle07@gmail.com-local
+Subfolders Verbatim
+Path /home/xfo/.local/share/mail/dylanduttle07@gmail.com/
+Inbox /home/xfo/.local/share/mail/dylanduttle07@gmail.com/INBOX
+
+Channel dylanduttle07@gmail.com
+Expunge Both
+Far :dylanduttle07@gmail.com-remote:
+Near :dylanduttle07@gmail.com-local:
+Patterns * !"[Gmail]/All Mail"
+Create Both
+SyncState *
+MaxMessages 0
+ExpireUnread no
+# End profile
+

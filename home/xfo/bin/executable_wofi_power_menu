@@ -1,0 +1,22 @@
+#!/bin/bash
+
+entries="⏻ shutdown\n⭮ rboot\n uefi\n⇠ logout\n⏾ suspend"
+
+selected=$(echo -e "$entries"|wofi --width 250 --height 210 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
+
+case $selected in
+    logout)
+        swaymsg exit ;;
+    suspend)
+        exec systemctl suspend ;;
+    rboot)
+        exec systemctl reboot ;;
+    uefi)
+        exec systemctl reboot --firmware-setup ;;
+    shutdown)
+        {
+            webostv power off "$LOCAL_LG_ADR" "$LOCAL_LG"
+            systemctl poweroff -i
+        } &
+        exit ;;
+esac

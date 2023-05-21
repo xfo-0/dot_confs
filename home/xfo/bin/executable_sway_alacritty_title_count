@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# Get the number of alacritty instances currently running
+alacritty_count=$(pgrep -c alacritty)
+
+# Increment the count to get the next instance number
+next_instance_number=$((alacritty_count+1))
+
+# Spawn a new alacritty instance with the title "alacritty$next_instance_number"
+alacritty -t "alacritty$next_instance_number" &

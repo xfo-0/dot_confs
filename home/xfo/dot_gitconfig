@@ -1,0 +1,36 @@
+[core]
+    pager = delta
+
+[include]
+    path = ~/.config/delta/themes.gitconfig
+
+[interactive]
+    diffFilter = delta --color-only --dark -n --syntax-theme Monokai Extended Origin
+
+[delta]
+  navigate                      = true
+  light                         = false
+  minus-style                   = syntax "#36252f"
+  minus-non-emph-style          = syntax "#36252f"
+  minus-emph-style              = syntax "#6f3a40"
+  minus-empty-line-marker-style = syntax "#36252f"
+  line-numbers-minus-style      = "#b2555b"
+  plus-style                    = syntax "#20303b"
+  plus-non-emph-style           = syntax "#20303b"
+  plus-emph-style               = syntax "#2c5a66"
+  plus-empty-line-marker-style  = syntax "#20303b"
+  line-numbers-plus-style       = "#266d6a"
+  line-numbers-zero-style       = "#4e4e4e"
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
+[init]
+	defaultBrach = main
+[protocol "file"]
+	allow = 1
+	allow = always
+[credential]
+	helper = keepassxc -vv

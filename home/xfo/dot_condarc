@@ -1,0 +1,3 @@
+changeps1: false
+solver: libmamba
+auto_activate_base: false

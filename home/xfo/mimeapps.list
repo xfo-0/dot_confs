@@ -1,0 +1,8 @@
+[Added Associations]
+x-scheme-handler/tg=userapp-Telegram Desktop-NC03T1.desktop;
+
+[Default Applications]
+image/*=imv.desktop;
+text/*=nvim.desktop;
+x-scheme-handler/terminal=Alacritty.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-NC03T1.desktop;

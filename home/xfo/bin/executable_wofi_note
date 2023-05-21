@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Search for files using ripgrep
+results=$(fd . ~/notes/ -e ".norg")
+
+# Pass the list of files to wofi for selection
+selected_file=$(echo "$results" | wofi --dmenu --prompt "Select file to edit:")
+
+# Open the selected file in vim
+if [ "$selected_file" != "" ] && [ "$FLOAT_TERM" != "" ]; then
+    "$FLOAT_TERM" -t "wofi_note" -e nvim "$selected_file"
+elif [ "$selected_file" != "" ] && [ "$TERMINAL" != "" ]; then
+    "$TERMINAL" -t "wofi_note" -e nvim "$selected_file"
+elif [ "$selected_file" != "" ]; then
+    echo "No terminal set"
+else
+    exit
+fi

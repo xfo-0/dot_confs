@@ -1,0 +1,9 @@
+session_name: left
+windows:
+  - window_name: left
+    layout: tiled
+    shell_command_before:
+      - cd ~/.config # run as a first command in all panes
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: clear

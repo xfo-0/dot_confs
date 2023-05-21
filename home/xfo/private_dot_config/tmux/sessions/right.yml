@@ -1,0 +1,9 @@
+session_name: right
+windows:
+  - window_name: right
+    layout: tiled
+    shell_command_before:
+      - cd ~/ # run as a first command in all panes
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: clear

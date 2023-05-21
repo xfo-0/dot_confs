@@ -1,0 +1,135 @@
+#!/bin/bash
+
+FILE_PATH="$(readlink -f "$2")"
+SOURCE_PATH=
+DEST_PATH=
+
+CRYPTSYNC=false
+FMODE_VAL=false
+
+function add_entry() {
+  local DOTBOT_FILE_PATH="${FILE_PATH#/}"
+
+  if [[ $FILE_PATH == "$DOTBOT_DIR/$DOTBOT_FILE_PATH" ]]; then
+    echo "$FILE_PATH already in the dotbot directory"
+  fi
+
+  local FILE_PATH="${FILE_PATH/$HOME/\~}"
+
+  local LINK_ENTRY_EXISTS
+  LINK_ENTRY_EXISTS=$(yq e '(.[] | select(has("link"))).link | has("'"$FILE_PATH"'")' "$DOTBOT_CONF")
+
+  if [[ $LINK_ENTRY_EXISTS == "true" ]]; then
+    echo "$FILE_PATH already exists in the link array"
+    if [ "$CRYPTSYNC" = false ]; then
+    return
+    fi
+  fi
+
+  if [[ -d "$FILE_PATH" ]] && [[ "$CRYPTSYNC" != true ]]; then
+      yq e '(.[] | select(has("link"))).link |= . + {"'"$FILE_PATH"'": {"path": "'"${DOTBOT_FILE_PATH}/"'"}}' "$DOTBOT_CONF" -i
+      yq e -i 'sort_keys(..)' "$DOTBOT_CONF"
+  elif [[ "$CRYPTSYNC" != true ]]; then
+      yq e '(.[] | select(has("link"))).link |= . + {"'"$FILE_PATH"'": {"path": "'"$DOTBOT_FILE_PATH"'"}}' "$DOTBOT_CONF" -i
+      yq e -i 'sort_keys(..)' "$DOTBOT_CONF"
+  fi
+  if [ "$CRYPTSYNC" = true ]; then
+    if ! rg -q "^$DOTBOT_FILE_PATH filter=git-crypt diff=git-crypt" "$DOTBOT_DIR"/.gitattributes; then
+      echo "$DOTBOT_FILE_PATH filter=git-crypt diff=git-crypt" >> .gitattributes
+    else
+      echo "$DOTBOT_FILE_PATH already exists in .gitattributes"
+    fi
+
+    if [[ $LINK_ENTRY_EXISTS == "true" ]]; then
+        yq e 'del((.[] | select(has("link"))).link["'"$FILE_PATH"'"])' "$DOTBOT_CONF" -i
+        yq e -i 'sort_keys(..)' "$DOTBOT_CONF"
+    fi
+
+    local CRYPTSYNC_ENTRY_EXISTS
+    CRYPTSYNC_ENTRY_EXISTS=$(yq e '(.[] | select(has("cryptsync"))).cryptsync | has("'"$FILE_PATH"'")' "$DOTBOT_CONF")
+
+    if [[ $CRYPTSYNC_ENTRY_EXISTS == "true" ]]; then
+      echo "$DOTBOT_FILE_PATH already exists in the cryptsync array"
+      return
+    fi
+
+    if [ "$FMODE_VAL" = false ]; then
+      FMODE_VAL=755
+    fi
+
+   yq e '(.[] | select(has("cryptsync"))).cryptsync |= . + {"'"$FILE_PATH"'": {"path": "'"$DOTBOT_FILE_PATH"'", "fmode": "'"$FMODE_VAL"'"}}' "$DOTBOT_CONF" -i
+   yq e -i 'sort_keys(..)' "$DOTBOT_CONF"
+
+  fi
+}
+
+function restore_entry() {
+
+  if [[ $FILE_PATH == $DOTBOT_DIR* ]]; then
+    SOURCE_PATH="$FILE_PATH"
+    DEST_PATH="${FILE_PATH#$DOTBOT_DIR/}"
+  else
+    echo "$FILE_PATH not found in dotbot directory"
+  fi
+
+  yq e "del(.config[0].link.\"$DEST_PATH\")" install.conf.yaml -i
+  rm -f "$FILE_PATH"
+  mv "$SOURCE_PATH" "$DEST_PATH"
+}
+
+function delete_entry() {
+    if [[ $FILE_PATH == $DOTBOT_DIR* ]]; then
+      SOURCE_PATH="$FILE_PATH"
+      DEST_PATH="${FILE_PATH#$DOTBOT_DIR/}"
+    else
+      echo "$FILE_PATH not found in dotbot directory"
+    fi
+
+  read -p "\n$FILE_PATH\ndelete entry and file? [y/N]" response
+  if [[ "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+
+    yq e "del(.config[0].link.\"$FILE_PATH\")" install.conf.yaml -i
+    rm -f "$DEST_PATH"
+    rm -f "$SOURCE_PATH"
+
+    echo "Entry and original file deleted."
+  else
+    echo "Operation cancelled."
+  fi
+}
+
+ACTION=$1
+shift
+
+case $ACTION in
+  add)
+    while [[ $# -gt 0 ]]; do
+      key="$1"
+      case $key in
+        -c|--cryptsync)
+        CRYPTSYNC=true
+        shift
+        ;;
+        --fmode)
+        FMODE_VAL="$2"
+        shift
+        shift
+        ;;
+        *)
+        FILE_PATH="$(readlink -f "$1")"
+        shift
+        ;;
+      esac
+    done
+    add_entry
+    ;;
+  restore)
+    restore_entry "$@"
+    ;;
+  delete)
+    delete_entry "$@"
+    ;;
+  *)
+    echo "Usage: $0 {add|restore|delete} <file_path> [dir]"
+    ;;
+esac

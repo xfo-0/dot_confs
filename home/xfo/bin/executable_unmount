@@ -1,0 +1,4 @@
+sudo umount /home/xfo/Videos/series
+sudo umount /home/xfo/Videos/films
+sudo umount /home/xfo/Documents/sdb3
+sudo umount /home/xfo/Music/

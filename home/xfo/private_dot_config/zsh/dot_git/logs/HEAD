@@ -1,0 +1,18 @@
+0000000000000000000000000000000000000000 dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680310227 -0700	commit (initial): init zsh
+dd02c111a492195411995db3c2c4cbdfe92041c4 a57812036902b1bbaf685bb0a02db420d970044e xfo-0 <ded.dylan04@gmail.com> 1680312032 -0700	commit: test submodule by update of v{nvim} paths
+a57812036902b1bbaf685bb0a02db420d970044e a57812036902b1bbaf685bb0a02db420d970044e xfo-0 <ded.dylan04@gmail.com> 1680312061 -0700	checkout: moving from main to a57812036902b1bbaf685bb0a02db420d970044e
+a57812036902b1bbaf685bb0a02db420d970044e a57812036902b1bbaf685bb0a02db420d970044e xfo-0 <ded.dylan04@gmail.com> 1680312064 -0700	checkout: moving from a57812036902b1bbaf685bb0a02db420d970044e to main
+a57812036902b1bbaf685bb0a02db420d970044e a57812036902b1bbaf685bb0a02db420d970044e xfo-0 <ded.dylan04@gmail.com> 1680312872 -0700	checkout: moving from main to a57812036902b1bbaf685bb0a02db420d970044e
+a57812036902b1bbaf685bb0a02db420d970044e a57812036902b1bbaf685bb0a02db420d970044e xfo-0 <ded.dylan04@gmail.com> 1680312881 -0700	checkout: moving from a57812036902b1bbaf685bb0a02db420d970044e to main
+a57812036902b1bbaf685bb0a02db420d970044e dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680312897 -0700	rebase (start): checkout dd02c111a492195411995db3c2c4cbdfe92041c4
+dd02c111a492195411995db3c2c4cbdfe92041c4 dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680312897 -0700	rebase (finish): returning to refs/heads/main
+dd02c111a492195411995db3c2c4cbdfe92041c4 6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b xfo-0 <ded.dylan04@gmail.com> 1680312973 -0700	commit: zsh: edit aliases
+6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b 6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b xfo-0 <ded.dylan04@gmail.com> 1680314381 -0700	checkout: moving from main to 6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b
+6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b 6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b xfo-0 <ded.dylan04@gmail.com> 1680317990 -0700	checkout: moving from 6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b to main
+6fb8c8b25d2ec742370bba7d7f0285ddfe24c55b dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680317998 -0700	rebase (start): checkout dd02c111a492195411995db3c2c4cbdfe92041c4
+dd02c111a492195411995db3c2c4cbdfe92041c4 dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680317998 -0700	rebase (finish): returning to refs/heads/main
+dd02c111a492195411995db3c2c4cbdfe92041c4 777e49469b64c5912ac23b3f40f69d9a69534491 xfo-0 <ded.dylan04@gmail.com> 1680318129 -0700	commit: update aliases
+777e49469b64c5912ac23b3f40f69d9a69534491 dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680319486 -0700	rebase (start): checkout dd02c111a492195411995db3c2c4cbdfe92041c4
+dd02c111a492195411995db3c2c4cbdfe92041c4 dd02c111a492195411995db3c2c4cbdfe92041c4 xfo-0 <ded.dylan04@gmail.com> 1680319486 -0700	rebase (finish): returning to refs/heads/main
+dd02c111a492195411995db3c2c4cbdfe92041c4 7136d5b83809f0f7b1fe13c79ad6ef4f7098ea27 xfo-0 <ded.dylan04@gmail.com> 1680392742 -0700	commit: znap bathelp skim aliases completion
+7136d5b83809f0f7b1fe13c79ad6ef4f7098ea27 2be037476e27701061ca4b63689b0b9f0db7e8d6 xfo-0 <ded.dylan04@gmail.com> 1680417278 -0700	commit: sk zoxide

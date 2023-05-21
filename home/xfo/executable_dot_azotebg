@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+killall swaybg 2>/dev/null
+swaybg -o '*' -i '/home/xfo/pictures/pictures/wallpaper/000000.png'

@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# FLOAT_TERM="${FLOAT_TERM:-alacritty}"
+
+# Refresh the devices
+kdeconnect-cli --refresh
+
+# Prompt the user to select a device
+device_name=$(kdeconnect-cli -a | grep -oP '(?<=- ).*(?=:)')
+device_selection=$(echo "$device_name" | sk --prompt "Select a device:")
+
+if [ "$device_selection" = "" ]; then
+    echo "No device selected. Exiting."
+    exit 1
+fi
+
+# Define the available commands
+commands=(
+    "--pair: request pair"
+    "--ring: ring device"
+    "--unpair: remove pair"
+    "--ping: send ping"
+    "--ping-msg <message>: send ping w/ message"
+    "--share <path or URL>: share file/URL"
+    "--share-text <text>: share text"
+    "--list-notifications: display notifications"
+    "--lock: lock device"
+    "--unlock: unlock device"
+    "--send-sms <message>: send sms"
+    "--destination <phone number>: Phone number to send the message"
+    "--attachment <file urls>: send file(s) attachmented w/ message"
+    "--encryption-info: encryption info"
+    "--list-commands: ls remote commands"
+    "--execute-command <id>: exec remote command"
+    "-k, --send-keys <key>: sends keys"
+    "--my-id: display device id"
+    "--photo <path>: open camera for photo transfer"
+)
+
+# Prompt the user to select a command
+command_selection=$(printf "%s\n" "${commands[@]}" | sk --prompt "Select a command:")
+
+if [ "$command_selection" = "" ]; then
+    echo "No command selected. Exiting."
+    exit 1
+fi
+
+command=$(echo "$command_selection" | awk -F: '{print $1}')
+
+# Run the selected command on the selected device
+kdeconnect-cli -n "$device_selection" "$command"

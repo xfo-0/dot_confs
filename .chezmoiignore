@@ -1,0 +1,27 @@
+key.txt.age
+
+# git
+.git/
+.gitignore
+.gitattributes
+
+# nnn tmp
+.lastd
+.selection
+
+config.old
+
+cache.db
+cache.db.lock
+
+error.log
+
+# mail
+.mailsynclastrun
+msmtp.log
+
+# ipython
+log/
+pid/
+cache/
+history.sqlite

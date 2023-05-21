@@ -1,0 +1,17 @@
+[Added Associations]
+
+[Default Applications]
+application/pdf=org.pwmt.zathura.desktop;
+image/*=imv.desktop;
+image/gif=imv.desktop;
+multipart/alternative=org.qutebrowser.qutebrowser.desktop;
+scheme-handler/mailto=/usr/share/applications/neomutt-float.desktop;
+text/*=nvim.desktop;
+video/*=mpv.desktop;
+video/.mkv=mpv.desktop;
+video/x-matroska=mpv.desktop;
+x-scheme-handler/discord=/usr/share/applications/discord.desktop;
+x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
+x-scheme-handler/mailto=/usr/share/applications/neomutt-float.desktop;
+x-scheme-handler/terminal=Alacritty.desktop;

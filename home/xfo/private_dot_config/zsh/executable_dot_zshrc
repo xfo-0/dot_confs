@@ -1,0 +1,18 @@
+# zmodload zsh/zprof
+
+# Created by Zap installer
+[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+
+source "$ZDOTDIR/config/prompt.zsh"
+source "$ZDOTDIR/config/load.zsh"
+source "$ZDOTDIR/config/exports.zsh"
+source "$ZDOTDIR/config/settings.zsh"
+source "$ZDOTDIR/config/functions.zsh"
+source "$ZDOTDIR/config/aliases.zsh"
+source "$ZDOTDIR/config/widgets.zsh"
+source "$ZDOTDIR/config/plugins.zsh"
+source "$ZDOTDIR/config/skim.zsh"
+source "$ZDOTDIR/config/keymaps.zsh"
+
+# source /home/xfo/.config/broot/launcher/bash/br
+# zprof

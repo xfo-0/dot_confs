@@ -1,0 +1,34 @@
+session_name: r_top
+windows:
+  - window_name: btop
+    layout: tiled
+    shell_command_before:
+      - cd ~/ # run as a first command in all panes
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: btop
+
+  - window_name: jpn
+    layout: tiled
+    shell_command_before:
+      - cd ~/
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: clear
+
+  - window_name: tr
+    layout: tiled
+    shell_command_before:
+      - cd ~/git/trade/freqtrade
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: clear
+
+  - window_name: trs
+    layout: tiled
+    shell_command_before:
+      - cd ~/git/trade/freqtrade
+    panes:
+      - shell_command: # pane no. 1
+        - cmd: clear
+

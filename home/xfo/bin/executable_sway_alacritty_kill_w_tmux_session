@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# swaymsg -t get_tree | jq -r ".. | select(.focused) | .pid"
+#
+# window_name=$(tmux display-message -p "#W")
+# session_name=$(tmux display-message -p "#S")
+# session_pid=$(tmux list-sessions -F "#{session_name} #{pid}" | grep "$session_name" | awk '{print $2}')
+#
+# session_pid2=$(pgrep -P "$(pgrep -f "tmux")")
+# session_pid3=$(ps -o pid,ppid,comm -C tmux | grep -v grep | awk '{print $2}')
+#
+# echo "window_name=$window_name"
+# echo "session_name=$session_name"
+# echo "session_pid=$session_pid"
+# echo "session_pid2=$session_pid2"
+# echo "session_pid3=$session_pid3"
+# # tmux kill-session -t $session_name
+
+# Get the pid of the focused alacritty window
+alacritty_pid=$(swaymsg -t get_tree | jq -r ".. | select(.focused) | .pid")
+
+# Get the pid of the tmux process running inside the alacritty window
+tmux_pid=$(pgrep -P "$alacritty_pid" -f tmux)
+
+# Get the tmux session name associated with the alacritty window
+session_name=$(tmux list-sessions -F "#{session_name}" | grep "$tmux_pid")
+
+# Kill the alacritty window
+kill "$alacritty_pid"
+
+# Kill the associated tmux session
+tmux kill-session -t "$session_name"

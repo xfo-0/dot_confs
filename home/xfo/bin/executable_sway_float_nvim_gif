@@ -1,0 +1,11 @@
+#!/bin/bash
+
+filepath="$1"
+tmux send-keys -t launch "imv $filepath" Enter
+
+sleep 2.2
+
+swaymsg "[title="imv"] floating enable"
+swaymsg "[title="imv"] move position center "
+swaymsg "[title="imv"] resize set 50ppt 50ppt"
+swaymsg "[title="imv"] focus"

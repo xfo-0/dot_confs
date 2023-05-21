@@ -1,0 +1,14 @@
+#!/bin/bash
+
+alacritty -t wev_term -e wev &
+
+sleep 2.2
+
+swaymsg "[title="wev"] floating enable"
+swaymsg "[title="wev_term"] floating enable"
+
+swaymsg "[title="wev"] resize set 14ppt 14pt"
+swaymsg "[title="wev"] move position center "
+swaymsg "[title="wev_term"] resize set 40ppt 90ppt"
+swaymsg "[title="wev_term"] move position 10 100"
+swaymsg "[title="wev"] focus"

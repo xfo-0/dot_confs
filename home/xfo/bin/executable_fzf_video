@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Prompt for selection using fzf
+selection="$(printf "films\nseries" | fzf)"
+
+# Parse selection
+case "$selection" in
+    films)
+        directory="/home/xfo/Videos/films"
+        ;;
+    series)
+        directory="/home/xfo/Videos/series"
+        ;;
+    *)
+        echo "Invalid selection: $selection" >&2
+        exit 1
+        ;;
+esac
+
+nnn -p -d "$directory"

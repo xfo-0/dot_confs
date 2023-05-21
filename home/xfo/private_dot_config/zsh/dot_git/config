@@ -1,0 +1,11 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[filter "git-crypt"]
+	smudge = \"/usr/bin/git-crypt\" smudge
+	clean = \"/usr/bin/git-crypt\" clean
+	required = true
+[diff "git-crypt"]
+	textconv = \"/usr/bin/git-crypt\" diff

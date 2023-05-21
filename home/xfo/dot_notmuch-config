@@ -1,0 +1,14 @@
+[database]
+path=/home/xfo/.local/share/mail
+[user]
+name=ded.dylan04
+primary_email=ded.dylan04@gmail.com
+[new]
+tags=unread;inbox;
+ignore=.mbsyncstate;.uidvalidity
+[search]
+exclude_tags=deleted;spam;
+[maildir]
+synchronize_flags=true
+[crypto]
+gpg_path=gpg
