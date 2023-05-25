@@ -52,6 +52,9 @@ zle -N edit-command-line
 
 eval "$(zoxide init zsh)"
 # eval "$(luarocks path --lua-version 5.4)"
+if ! env | grep -q SSH_AUTH_SOCK ; then
+  eval "$(ssh-agent -s)" > /dev/null
+fi
 
 if [[ ! -f ~/git/system/term/zsh/zsh-snap/znap.zsh ]]; then
   git clone --depth 1 -- https://github.com/marlonrichert/zsh-snap.git ~/git/system/term/zsh/zsh-snap/
@@ -71,6 +74,8 @@ foreach file (
     [[ -f $file ]] && source $file
 }
 unset file
+
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 if [[ "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .name')" != "\"nnn_preview_float\"" && "$(swaymsg -t get_tree | jq -r '.. | select(.focused?) | .name')" != "\"term_pick\"" && "$TERM_PROGRAM" != "tmux" ]]; then
     if [[ $(tmux list-sessions | wc -l) -eq 0 ]]; then
