@@ -33,4 +33,7 @@
 	allow = 1
 	allow = always
 [credential]
-	helper = keepassxc -vv
+	helper = keepassxc --git-groups
+[user]
+	email = ded.dylan04@gmail.com
+	name = xfo-0
