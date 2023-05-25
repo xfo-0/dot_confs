@@ -1,6 +1,5 @@
 # TODO:
-# direct tree/leader style bindings?
-# replace interchangable commands with vars
+# direct alt/ctrl based tree/leader style bindings?
 
 alias pcp='| ${COPY_CMD}'
 alias prg='| rg '
@@ -977,7 +976,8 @@ unset git_version
 
 alias lgo="lazygit -p /home/xfo/git/system/dot/dotfiles "
 alias oi="chezmoi "
-alias oiz="chezmoi cd "
+alias oicd="chezmoi cd "
+alias oiz="cd $(chezmoi source-path) "
 alias oie="chezmoi edit --apply "
 alias oist="chezmoi status "
 alias oia="chezmoi add "
