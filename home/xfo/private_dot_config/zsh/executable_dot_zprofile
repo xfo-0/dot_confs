@@ -6,10 +6,10 @@ if  [[ ! -d "$HOME/.local/share/zsh" ]]; then
     command mkdir -p "$HOME/.local/share/zsh"
 fi
 
-{
-    typeset -g zcompdump="$HOME/.local/share/zsh/zcompdump"
+# {
+#     typeset -g zcompdump="$HOME/.local/share/zsh/zcompdump"
 
-    if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
-        zcompile "$zcompdump"
-    fi
-} &!
+    # if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    #     zcompile "$zcompdump"
+    # fi
+# } &!
