@@ -15,7 +15,7 @@ foreach function (
     vcs_info
     zrecompile
     ) {
-    autoload -U $function
+    autoload -Uz $function
 }
 
 # Load binary modules.

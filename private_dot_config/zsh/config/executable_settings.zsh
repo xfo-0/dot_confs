@@ -33,7 +33,17 @@ setopt COMPLETE_IN_WORD # Attempt to start completion from both ends of a word.
 setopt GLOB_COMPLETE # Don't insert anything resulting from a glob pattern, show completion menu.
 setopt NO_LIST_BEEP # Don't beep on an ambiguous completion.
 setopt LIST_PACKED # Try to make the completion list smaller by drawing smaller columns.
+setopt AUTO_LIST
+setopt AUTO_MENU
 setopt MENU_COMPLETE # Instead of listing possibilities, select the first match immediately.
+setopt COMPLETE_ALIASES
+setopt AUTO_REMOVE_SLASH # Remove a trailing slash automatically when completing symlinks to directories.
+setopt AUTO_PARAM_SLASH # Add a trailing slash automatically when completing symlinks to directories.
+setopt AUTO_PARAM_KEYS # Automatically insert a parameter key when completing.
+setopt COMPLETE_IN_WORD # Attempt to complete from both ends of a word.
+setopt ALWAYS_TO_END # Move cursor to end of word when completing from the middle.
+setopt LIST_AMBIGUOUS # List all matches for ambiguous patterns.
+setopt LIST_TYPES # List all possible completions for types of files.
 # compdef g='git' # Trigger git completions for g alias.
 
 

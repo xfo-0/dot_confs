@@ -161,6 +161,7 @@ return {
           name = "s",
           ["<M-j>"] = { ":JupyniumKernelHover<cr>", "jupyter" },
           ["<Space>"] = { ':lua require("nvim-navbuddy").open()<cr>', "navbuddy" },
+          l = { ":OutputPanel<cr>", "lsp log" },
           h = { ":lua vim.lsp.buf.hover()<cr>", "hover" },
           a = { ":Lspsaga code_action<cr>", "code action (s)" },
           C = { ":TSHighlightCapturesUnderCursor<cr>", "TSCaptures" },
@@ -202,7 +203,7 @@ return {
             ":TroubleToggle document_diagnostics<cr>",
             "document diagnostics (T)",
           },
-          l = { ":TroubleToggle loclist<cr>", "loclist (T)" },
+          o = { ":TroubleToggle loclist<cr>", "loclist (T)" },
           w = {
             ":TroubleToggle workspace_diagnostics<cr>",
             "workspace diagnostics (T)",

@@ -100,17 +100,17 @@ rga-sk() {
 }
 zle -N rga-sk
 
-vmc() {
-  items=("default" "nvim2phi" "lunarvim" "nvchad" "astronvim")
-  config=$(printf "%s\n" "${items[@]}" | sk --prompt=" Neovim Config  " --layout=reverse --border --exit-0)
-  if [[ -z $config ]]; then
-    echo "Nothing selected"
-    return 0
-  elif [[ $config == "default" ]]; then
-    config=""
-  fi
-  NVIM_APPNAME=$config /usr/local/bin/nvim $@
-}
-zle -N vmsw
+# vmc() {
+#   items=("default" "nvim2phi" "lunarvim" "nvchad" "astronvim")
+#   config=$(printf "%s\n" "${items[@]}" | sk --prompt=" Neovim Config  " --layout=reverse --border --exit-0)
+#   if [[ -z $config ]]; then
+#     echo "Nothing selected"
+#     return 0
+#   elif [[ $config == "default" ]]; then
+#     config=""
+#   fi
+#   NVIM_APPNAME=$config /usr/local/bin/nvim $@
+# }
+# zle -N vmsw
 
 # bindkey -s ^a "nvims\n"

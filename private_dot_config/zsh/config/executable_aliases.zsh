@@ -1,5 +1,8 @@
 # TODO:
-# direct alt/ctrl based tree/leader style bindings?
+# iz
+#
+# direct tree/leader style bindings?
+# replace interchangable commands with vars
 
 alias pcp='| ${COPY_CMD}'
 alias prg='| rg '
@@ -83,14 +86,14 @@ alias fz='fzf '
 # lolcate {{{
 
 # ___________________________________________________________________
-alias lc='lolcate '
-alias lcd='lolcate --db '
-alias lcu='lolcate --update '
-alias lcud='lolcate --update --db '
-alias lcua='lolcate --update --all '
-alias lcb='lolcate --basename '
-alias lct='lolcate --type '
-alias lci='lolcate --info '
+# alias lc='lolcate '
+# alias lcd='lolcate --db '
+# alias lcu='lolcate --update '
+# alias lcud='lolcate --update --db '
+# alias lcua='lolcate --update --all '
+# alias lcb='lolcate --basename '
+# alias lct='lolcate --type '
+# alias lci='lolcate --info '
 # ___________________________________________________________________
 
 #  }}}
@@ -137,7 +140,7 @@ alias pbt='| bat '
 
 alias vm='/usr/local/bin/nvim '
 alias vn='nvim ~/notes/index.norg '
-alias pvm='| vm '
+alias pvm='| $EDITOR '
 
 alias xr='/usr/bin/xplr '
 alias nnn='n -HEUGdixroe '
@@ -734,8 +737,8 @@ function gccd() {
 }
 compdef _git gccd=git-clone
 
-alias gcl='git clone '
-alias gclp='git clone $(${PASTE_CMD})'
+alias gcl='git clone git@github.com:'
+alias gclp='git clone git@github.com:$(${PASTE_CMD})'
 # TODO: gclp add cd to cloned repo
 # alias gclpd='git clone $(${PASTE_CMD}) && cd # paste sed output'
 alias gclean='git clean -id'
@@ -1069,7 +1072,7 @@ alias gpgr="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # receive
 # or provided paths
 # provide a map of filenames and paths for fzf menu
 function vocp() {
-    alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
+    alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
     expanded_command=$(alias vqa)
     filepath=$(echo "$expanded_command" | grep -oE '\S+(~/|\./|/).* ')
     echo -n "$filepath" | ${COPY_CMD}
@@ -1082,57 +1085,57 @@ function vocp() {
 # alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} vm {}"
 # alias vvm="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/nvim/ | fzf | xargs -r -I {} vm {}"
 
-alias vpenv='vm /etc/environment '
-alias vpxd='vm /etc/profile.d/0000-xdg-dirs.sh '
-alias vpvar='vm /etc/profile.d/set-vars.sh '
+alias vpenv="$EDITOR /etc/environment "
+alias vpxd="$EDITOR /etc/profile.d/0000-xdg-dirs.sh "
+alias vpvar="$EDITOR /etc/profile.d/set-vars.sh "
 
-alias vprof='vm ~/.profile '
+alias vprof="$EDITOR ~/.profile "
 
 alias cdcr='cd /home/xfo/git/system/dot/files/root '
 alias cdch='cd /home/xfo/git/system/dot/files/home '
 
-alias vwk='vm /home/xfo/.config/wlr-which-key/config.yaml '
-alias vwh='vm /home/xfo/.config/swhkd/swhkdrc '
+alias vwk="$EDITOR /home/xfo/.config/wlr-which-key/config.yaml "
+alias vwh="$EDITOR /home/xfo/.config/swhkd/swhkdrc "
 
-alias vsd='vm /usr/local/bin/startsway '
-alias vau='vm /home/xfo/.config/paru/paru.conf '
+alias vsd="$EDITOR /usr/local/bin/startsway "
+alias vau="$EDITOR /home/xfo/.config/paru/paru.conf "
 
-alias vsw='vm /home/xfo/.config/sway/config '
-alias vsa='vm /home/xfo/.config/sway/autostart '
-alias vst='vm /home/xfo/.config/sway/theme '
-alias vwof='vm /home/xfo/.config/wofi/config '
+alias vsw="$EDITOR /home/xfo/.config/sway/config "
+alias vsa="$EDITOR /home/xfo/.config/sway/autostart "
+alias vst="$EDITOR /home/xfo/.config/sway/theme "
+alias vwof="$EDITOR /home/xfo/.config/wofi/config "
 
-alias voi="vm /home/xfo/.config/chezmoi/chezmoi.toml "
-alias vtg="vm /home/xfo/.config/topgrade.toml "
+alias voi="$EDITOR /home/xfo/.config/chezmoi/chezmoi.toml "
+alias vtg="$EDITOR /home/xfo/.config/topgrade.toml "
 
-alias vtx='vm /home/xfo/.config/tmux/tmux.conf '
-alias valac='vm /home/xfo/.config/alacritty/alacritty.yml '
-alias vkit='vm /home/xfo/.config/kitty/kitty.conf'
-alias vwez='vm /home/xfo/.config/wezterm/wezterm.lua'
-alias vlg='vm /home/xfo/.config/lazygit/config.yml '
-alias vmus='vm /home/xfo/.config/cmus/rc '
-alias vnm='vm /home/xfo/.config/mutt/muttrc '
-alias vnb='vm /home/xfo/.config/newsboat/config '
-alias vwrpd='vm /home/xfo/.config/warpd/config '
-alias vdnst='vm /home/xfo/.config/dunst/dunstrc '
-alias vrgr='vm /home/xfo/.config/ranger/rc.conf'
-alias vawsm='vm /home/xfo/.config/awesome/rc.lua '
-alias vq='vm /home/xfo/.config/qutebrowser/config.py '
-alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
+alias vtx="$EDITOR /home/xfo/.config/tmux/tmux.conf "
+alias valac="$EDITOR /home/xfo/.config/alacritty/alacritty.yml "
+alias vkit="$EDITOR /home/xfo/.config/kitty/kitty.conf"
+alias vwez="$EDITOR /home/xfo/.config/wezterm/wezterm.lua"
+alias vlg="$EDITOR /home/xfo/.config/lazygit/config.yml "
+alias vmus="$EDITOR /home/xfo/.config/cmus/rc "
+alias vnm="$EDITOR /home/xfo/.config/mutt/muttrc "
+alias vnb="$EDITOR /home/xfo/.config/newsboat/config "
+alias vwrpd="$EDITOR /home/xfo/.config/warpd/config "
+alias vdnst="$EDITOR /home/xfo/.config/dunst/dunstrc "
+alias vrgr="$EDITOR /home/xfo/.config/ranger/rc.conf"
+alias vawsm="$EDITOR /home/xfo/.config/awesome/rc.lua "
+alias vq="$EDITOR /home/xfo/.config/qutebrowser/config.py "
+alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
 
-alias vzrc='vm /home/xfo/.config/zsh/.zshrc '
-alias vza='vm /home/xfo/.config/zsh/config/aliases.zsh '
-alias vzw='vm /home/xfo/.config/zsh/config/widgets.zsh '
-alias vzkb='vm /home/xfo/.config/zsh/config/keymaps.zsh '
-alias vze='vm /home/xfo/.config/zsh/config/exports.zsh '
-alias vzf='vm /home/xfo/.config/zsh/config/functions.zsh '
-alias vzl='vm /home/xfo/.config/zsh/config/load.zsh '
-alias vzp='vm /home/xfo/.config/zsh/config/plugins.zsh '
-alias vzpr='vm /home/xfo/.config/zsh/.zprofile '
+alias vzrc="$EDITOR /home/xfo/.config/zsh/.zshrc "
+alias vza="$EDITOR /home/xfo/.config/zsh/config/aliases.zsh "
+alias vzw="$EDITOR /home/xfo/.config/zsh/config/widgets.zsh "
+alias vzkb="$EDITOR /home/xfo/.config/zsh/config/keymaps.zsh "
+alias vze="$EDITOR /home/xfo/.config/zsh/config/exports.zsh "
+alias vzf="$EDITOR /home/xfo/.config/zsh/config/functions.zsh "
+alias vzl="$EDITOR /home/xfo/.config/zsh/config/load.zsh "
+alias vzp="$EDITOR /home/xfo/.config/zsh/config/plugins.zsh "
+alias vzpr="$EDITOR /home/xfo/.config/zsh/.zprofile "
 
-alias vvm='vm /home/xfo/.config/nvim/init.lua '
-alias vvmp='vm /home/xfo/.config/nvim/lua/user/plugins.lua '
-alias vvmw='vm /home/xfo/.config/nvim/lua/user/whichkey.lua '
+alias vvm="$EDITOR /home/xfo/.config/nvim/init.lua "
+alias vvmp="$EDITOR /home/xfo/.config/nvim/lua/user/plugins.lua "
+alias vvmw="$EDITOR /home/xfo/.config/nvim/lua/user/whichkey.lua "
 
 #  }}}
 
