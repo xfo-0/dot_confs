@@ -5,4 +5,4 @@ Selection=true
 
 LoginShell=/usr/bin/zsh -l
 
-exec dbus-launch "$@"
+exec "$@"
