@@ -1,6 +1,6 @@
 #!/bin/bash
 
-entries="⏻ shutdown\n⭮ rboot\n uefi\n⇠ logout\n⏾ suspend"
+entries="⏻ shutdown\n⏲ shutdown_timer\n⭮ rboot\n uefi\n⇠ logout\n⏾ suspend"
 
 selected=$(echo -e "$entries"|wofi --width 250 --height 210 --dmenu --cache-file /dev/null | awk '{print tolower($2)}')
 
@@ -16,6 +16,15 @@ case $selected in
     shutdown)
         {
             webostv power off "$LOCAL_LG_ADR" "$LOCAL_LG"
+            systemctl poweroff -i
+        } &
+        exit ;;
+   shutdown_timer)
+        sleep_entries="10\n20\n30\n60\n120\n180\n300\n600\n800"
+        sleep_selected=$(echo -e "$sleep_entries"|wofi --width 250 --height 210 --dmenu --cache-file /dev/null)
+        {
+            webostv power off "$LOCAL_LG_ADR" "$LOCAL_LG"
+            sleep "$sleep_selected"
             systemctl poweroff -i
         } &
         exit ;;
