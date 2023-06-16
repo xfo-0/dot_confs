@@ -1,8 +1,4 @@
-# TODO:
-# iz
-#
-# direct tree/leader style bindings?
-# replace interchangable commands with vars
+znap source djui/alias-tips
 
 alias pcp='| ${COPY_CMD}'
 alias prg='| rg '
@@ -42,6 +38,10 @@ alias lbk='sudo lsblk '
 #  }}}
 
 # file/path  {{{
+
+# directories {{{
+# exanded before exec shorthand directories func solution
+#  }}}
 
 # find  {{{
 
@@ -86,14 +86,14 @@ alias fz='fzf '
 # lolcate {{{
 
 # ___________________________________________________________________
-# alias lc='lolcate '
-# alias lcd='lolcate --db '
-# alias lcu='lolcate --update '
-# alias lcud='lolcate --update --db '
-# alias lcua='lolcate --update --all '
-# alias lcb='lolcate --basename '
-# alias lct='lolcate --type '
-# alias lci='lolcate --info '
+alias lc='lolcate '
+alias lcd='lolcate --db '
+alias lcu='lolcate --update '
+alias lcud='lolcate --update --db '
+alias lcua='lolcate --update --all '
+alias lcb='lolcate --basename '
+alias lct='lolcate --type '
+alias lci='lolcate --info '
 # ___________________________________________________________________
 
 #  }}}
@@ -139,11 +139,13 @@ alias pbt='| bat '
 # edit  {{{
 
 alias vm='/usr/local/bin/nvim '
-alias vn='nvim ~/notes/index.norg '
-alias pvm='| $EDITOR '
+alias vn='vm ~/notes/index.norg '
+alias vnp='vm /home/xfo/projects/projects.norg '
+alias pvm='| vm '
 
 alias xr='/usr/bin/xplr '
 alias nnn='n -HEUGdixroe '
+alias nnp='n -HEUGdixroea -P i '
 
 alias wex='watchexec ' # watch for path modifications and execute
 
@@ -277,6 +279,7 @@ alias trpl="kill -l | while read -r line; do printf ' %2s) SIG%s' $line $line; d
 
 alias hpr='hyperfine '
 alias nvtp="pipx run nvitop "
+alias mprc="mprocs "
 alias btp="btop "
 alias kn='kmon ' # linux kernel monitor
 alias soid='systeroid ' # sysctl alternative
@@ -287,19 +290,21 @@ alias byth='bythound ' # system memory profiler
 # tmux  {{{
 
 # TODO: add xargs type command for piping into tmux send keys to preserve zsh completion
-alias tm='tmux '
-alias tma='tmux attach -t '
-alias tmd='tmux detach '
-alias tmad='tmux attach -d -t '
-alias tms='tmux new-session -s '
-alias tml='tmux list-sessions '
-alias tmksv='tmux kill-server '
-alias tmks='tmux kill-session -t '
+alias tx='tmux '
+alias txa='tmux attach -t '
+alias txd='tmux detach '
+alias txad='tmux attach -d -t '
+alias txs='tmux new-session -s '
+alias txl='tmux list-sessions '
+alias txksv='tmux kill-server '
+alias txks='tmux kill-session -t '
 
 #  }}}
 
 
 # docker  {{{
+
+alias ld='lazydocker '
 
 alias dk='docker '
 alias dkr='docker run '
@@ -364,6 +369,11 @@ alias dkfqb='docker-compose run --rm freqtrade backtesting --config '
 alias trp='trip '
 alias bndw='bandwhich '
 
+alias sptst='speedtest-rs'
+alias pn="gping "
+
+alias wkp="wiki-tui "
+
 # blokator  {{{
 
 #
@@ -389,7 +399,6 @@ alias nm='neomutt '
 
 # ssh  {{{
 
-alias pn="gping "
 
 #  }}}
 
@@ -473,7 +482,7 @@ alias jd='johnnydep '
 
 
 # pip  {{{
-
+alias pdt='pipdeptree '
 alias pp='pip list '
 alias pl='pip list '
 alias plz='pip list | ${FZ_PICKER} '
@@ -511,6 +520,10 @@ alias pxl='pipx list '
 
 #  }}}
 
+# conda {{{ 
+
+alias mmlv='conda-leaves '
+alias mmlvdt='conda-leaves package --name '
 
 # mamba  {{{
 
@@ -537,7 +550,7 @@ alias mmer='mamba env remove --name '
 #  }}}
 
 
-# mamba {{{
+# micromamba {{{
 
 alias mi='micromamba '
 alias mie='micromamba activate '
@@ -559,6 +572,7 @@ alias mier='micromamba env remove --name '
 
 # }}}
 
+# }}}
 
 #  }}}
 
@@ -737,8 +751,8 @@ function gccd() {
 }
 compdef _git gccd=git-clone
 
-alias gcl='git clone git@github.com:'
-alias gclp='git clone git@github.com:$(${PASTE_CMD})'
+alias gcl='git clone '
+alias gclp='git clone $(${PASTE_CMD})'
 # TODO: gclp add cd to cloned repo
 # alias gclpd='git clone $(${PASTE_CMD}) && cd # paste sed output'
 alias gclean='git clean -id'
@@ -1072,7 +1086,7 @@ alias gpgr="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # receive
 # or provided paths
 # provide a map of filenames and paths for fzf menu
 function vocp() {
-    alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
+    alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
     expanded_command=$(alias vqa)
     filepath=$(echo "$expanded_command" | grep -oE '\S+(~/|\./|/).* ')
     echo -n "$filepath" | ${COPY_CMD}
@@ -1085,57 +1099,57 @@ function vocp() {
 # alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} vm {}"
 # alias vvm="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/nvim/ | fzf | xargs -r -I {} vm {}"
 
-alias vpenv="$EDITOR /etc/environment "
-alias vpxd="$EDITOR /etc/profile.d/0000-xdg-dirs.sh "
-alias vpvar="$EDITOR /etc/profile.d/set-vars.sh "
+alias vpenv='vm /etc/environment '
+alias vpxd='vm /etc/profile.d/0000-xdg-dirs.sh '
+alias vpvar='vm /etc/profile.d/set-vars.sh '
 
-alias vprof="$EDITOR ~/.profile "
+alias vprof='vm ~/.profile '
 
 alias cdcr='cd /home/xfo/git/system/dot/files/root '
 alias cdch='cd /home/xfo/git/system/dot/files/home '
 
-alias vwk="$EDITOR /home/xfo/.config/wlr-which-key/config.yaml "
-alias vwh="$EDITOR /home/xfo/.config/swhkd/swhkdrc "
+alias vwk='vm /home/xfo/.config/wlr-which-key/config.yaml '
+alias vwh='vm /home/xfo/.config/swhkd/swhkdrc '
 
-alias vsd="$EDITOR /usr/local/bin/startsway "
-alias vau="$EDITOR /home/xfo/.config/paru/paru.conf "
+alias vsd='vm /usr/local/bin/startsway '
+alias vau='vm /home/xfo/.config/paru/paru.conf '
 
-alias vsw="$EDITOR /home/xfo/.config/sway/config "
-alias vsa="$EDITOR /home/xfo/.config/sway/autostart "
-alias vst="$EDITOR /home/xfo/.config/sway/theme "
-alias vwof="$EDITOR /home/xfo/.config/wofi/config "
+alias vsw='vm /home/xfo/.config/sway/config '
+alias vsa='vm /home/xfo/.config/sway/autostart '
+alias vst='vm /home/xfo/.config/sway/theme '
+alias vwof='vm /home/xfo/.config/wofi/config '
 
-alias voi="$EDITOR /home/xfo/.config/chezmoi/chezmoi.toml "
-alias vtg="$EDITOR /home/xfo/.config/topgrade.toml "
+alias voi="vm /home/xfo/.config/chezmoi/chezmoi.toml "
+alias vtg="vm /home/xfo/.config/topgrade.toml "
 
-alias vtx="$EDITOR /home/xfo/.config/tmux/tmux.conf "
-alias valac="$EDITOR /home/xfo/.config/alacritty/alacritty.yml "
-alias vkit="$EDITOR /home/xfo/.config/kitty/kitty.conf"
-alias vwez="$EDITOR /home/xfo/.config/wezterm/wezterm.lua"
-alias vlg="$EDITOR /home/xfo/.config/lazygit/config.yml "
-alias vmus="$EDITOR /home/xfo/.config/cmus/rc "
-alias vnm="$EDITOR /home/xfo/.config/mutt/muttrc "
-alias vnb="$EDITOR /home/xfo/.config/newsboat/config "
-alias vwrpd="$EDITOR /home/xfo/.config/warpd/config "
-alias vdnst="$EDITOR /home/xfo/.config/dunst/dunstrc "
-alias vrgr="$EDITOR /home/xfo/.config/ranger/rc.conf"
-alias vawsm="$EDITOR /home/xfo/.config/awesome/rc.lua "
-alias vq="$EDITOR /home/xfo/.config/qutebrowser/config.py "
-alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
+alias vtm='vm /home/xfo/.config/tmux/tmux.conf '
+alias valac='vm /home/xfo/.config/alacritty/alacritty.yml '
+alias vkit='vm /home/xfo/.config/kitty/kitty.conf'
+alias vwez='vm /home/xfo/.config/wezterm/wezterm.lua'
+alias vlg='vm /home/xfo/.config/lazygit/config.yml '
+alias vmus='vm /home/xfo/.config/cmus/rc '
+alias vnm='vm /home/xfo/.config/mutt/muttrc '
+alias vnb='vm /home/xfo/.config/newsboat/config '
+alias vwrpd='vm /home/xfo/.config/warpd/config '
+alias vdnst='vm /home/xfo/.config/dunst/dunstrc '
+alias vrgr='vm /home/xfo/.config/ranger/rc.conf'
+alias vawsm='vm /home/xfo/.config/awesome/rc.lua '
+alias vq='vm /home/xfo/.config/qutebrowser/config.py '
+alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
 
-alias vzrc="$EDITOR /home/xfo/.config/zsh/.zshrc "
-alias vza="$EDITOR /home/xfo/.config/zsh/config/aliases.zsh "
-alias vzw="$EDITOR /home/xfo/.config/zsh/config/widgets.zsh "
-alias vzkb="$EDITOR /home/xfo/.config/zsh/config/keymaps.zsh "
-alias vze="$EDITOR /home/xfo/.config/zsh/config/exports.zsh "
-alias vzf="$EDITOR /home/xfo/.config/zsh/config/functions.zsh "
-alias vzl="$EDITOR /home/xfo/.config/zsh/config/load.zsh "
-alias vzp="$EDITOR /home/xfo/.config/zsh/config/plugins.zsh "
-alias vzpr="$EDITOR /home/xfo/.config/zsh/.zprofile "
+alias vzrc='vm /home/xfo/.config/zsh/.zshrc '
+alias vza='vm /home/xfo/.config/zsh/config/aliases.zsh '
+alias vzw='vm /home/xfo/.config/zsh/config/widgets.zsh '
+alias vzkb='vm /home/xfo/.config/zsh/config/keymaps.zsh '
+alias vze='vm /home/xfo/.config/zsh/config/exports.zsh '
+alias vzf='vm /home/xfo/.config/zsh/config/functions.zsh '
+alias vzl='vm /home/xfo/.config/zsh/config/load.zsh '
+alias vzp='vm /home/xfo/.config/zsh/config/plugins.zsh '
+alias vzpr='vm /home/xfo/.config/zsh/.zprofile '
 
-alias vvm="$EDITOR /home/xfo/.config/nvim/init.lua "
-alias vvmp="$EDITOR /home/xfo/.config/nvim/lua/user/plugins.lua "
-alias vvmw="$EDITOR /home/xfo/.config/nvim/lua/user/whichkey.lua "
+alias vvm='vm /home/xfo/.config/nvim/init.lua '
+alias vvmp='vm /home/xfo/.config/nvim/lua/user/plugins.lua '
+alias vvmw='vm /home/xfo/.config/nvim/lua/user/whichkey.lua '
 
 #  }}}
 
@@ -1143,13 +1157,77 @@ alias vvmw="$EDITOR /home/xfo/.config/nvim/lua/user/whichkey.lua "
 
 # util  {{{
 
-
 alias vvd='vivid ' # LS_COLORS generator
 
 alias bitw='bitwise ' # bit calculator
 
 alias bt='bartib ' # time tasks
-alias tt='taskwarrior-tui ' # track tasks
+
+# task
+alias tt='taskwarrior-tui '
+alias t='task '
+alias tmc='task count '
+alias tmi='task information'
+alias tmp='task projects '
+alias tmid='task ids'
+alias tms='task stats '
+alias tmuid='task iuids '
+
+alias trac='task active '
+alias tra='task all '
+alias trbd='task blocked '
+alias trb='task blocking '
+alias trc='task completed '
+alias trl='task list '
+alias trlo='task long '
+alias trls='task ls '
+alias trm='task minimal '
+alias trn='task newest '
+alias trne='task next '
+alias tro='task oldest '
+alias trod='task overdue '
+alias trr='task ready '
+alias trre='task recurring '
+alias trts='task timesheet '
+alias trub='task unblocked '
+alias trwa='task waiting '
+
+alias toa='task add '
+alias toan='task annotate '
+alias toap='task append '
+alias tox='task delete '
+alias tode='task denotate '
+alias tod='task done '
+alias todu='task duplicate '
+alias toe='task edit '
+alias tol='task log '
+alias tom='task modify '
+alias top='task prepend '
+alias topu='task purge '
+alias tost='task start '
+alias tostp='task stop '
+alias tou='task undo '
+
+tsf ()
+{
+  task $1 annotate -- $2
+}
+
+alias tc='task context '
+
+alias tgd='task burndown.daily '
+alias tgm='task burndown.monthly '
+alias tgw='task burndown.weekly  '
+alias tgc='task calendar '
+alias tga='task ghistory.annual '
+alias tggd='task ghistory.daily  '
+alias tggm='task ghistory.monthly '
+alias tggw='task ghistory.weekly '
+alias tgga='task history.annual '
+alias tghd='task history.daily '
+alias tghm='task history.monthly '
+alias tghw='task history.weekly '
+alias tghm='task summary '
 
 alias gor='goread ' # rss
 alias nc='ncmpcpp ' # music

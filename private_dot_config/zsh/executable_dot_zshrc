@@ -1,18 +1,19 @@
 # zmodload zsh/zprof
 
-# Created by Zap installer
-[ -f "$HOME/.local/share/zap/zap.zsh" ] && source "$HOME/.local/share/zap/zap.zsh"
+[[ -r ~/.local/share/zsh/znap/znap.zsh ]] ||
+    git clone --depth 1 -- \
+        https://github.com/marlonrichert/zsh-snap.git ~/.local/share/zsh/znap
 
-source "$ZDOTDIR/config/settings.zsh"
-source "$ZDOTDIR/config/prompt.zsh"
-source "$ZDOTDIR/config/load.zsh"
-source "$ZDOTDIR/config/exports.zsh"
-source "$ZDOTDIR/config/functions.zsh"
-source "$ZDOTDIR/config/aliases.zsh"
-source "$ZDOTDIR/config/widgets.zsh"
-source "$ZDOTDIR/config/plugins.zsh"
-source "$ZDOTDIR/config/skim.zsh"
-source "$ZDOTDIR/config/keymaps.zsh"
+source ~/.local/share/zsh/znap/znap.zsh
 
-# source /home/xfo/.config/broot/launcher/bash/br
+. "$ZDOTDIR/config/misc.zsh"
+. "$ZDOTDIR/config/env.zsh"
+. "$ZDOTDIR/config/prompt.zsh"
+. "$ZDOTDIR/config/comp.zsh"
+. "$ZDOTDIR/config/aliases.zsh"
+. "$ZDOTDIR/config/hist.zsh"
+. "$ZDOTDIR/config/func.zsh"
+. "$ZDOTDIR/config/widgets.zsh"
+. "$ZDOTDIR/config/bind.zsh"
+
 # zprof
