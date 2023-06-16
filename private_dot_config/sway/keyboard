@@ -1,0 +1,4 @@
+input "type:keyboard" {
+    repeat_rate 58
+    repeat_delay 130
+}

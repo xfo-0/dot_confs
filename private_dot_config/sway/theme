@@ -1,0 +1,79 @@
+# class                 border  bground text    indicator child_border
+client.focused          #1c1b1b #000000 #A49F8C #925B46   #7a7a7a
+client.focused_inactive #1c1b1b #000000 #30322A #231612   #2d2b24
+client.unfocused        #000000 #000000 #30322A #1B2718   #291b14
+client.urgent           #000000 #6E0000 #000000 #6E0000   #6E0000
+client.placeholder      #000000 #000000 #000000 #000000   #000000
+
+client.background       #000000
+
+exec_always swaybg -c '#000000' -o '*'
+
+# font
+# font pango:monospace 11
+font FiraCode Nerd Font Mono SemiBold 8
+
+# border & title
+# for_window [title="^.*"] border pixel 1, title_format "<b> %class >> %title </b>"
+default_border pixel 1
+
+gaps inner 2
+gaps outer 2
+# gaps left 14
+smart_gaps off
+
+# spacer nvidiagpu \
+# spacer spacer memory disk \
+# spacer spacer traffic ping nic \
+# -p nvidiagpu.format='{name}: {mem_used}/{mem_total} MiB {temp}°C {fanspeed}' \
+# traffic.showname='false' \
+bar {
+  font pango: FiraCode Nerd Font Mono SemiBold 8
+  position top
+  workspace_buttons no
+  status_command bumblebee-status \
+  -t ~/.config/sway/bumblebee_status/black-powerline \
+  -m \
+  spacer spacer cpu2 \
+  spacer spacer memory \
+  spacer spacer nic \
+  -p cpu2.layout='cpu2.maxfreq cpu2.temp cpu2.cpuload cpu2.coresload' \
+  cpu2.colored=0 cpu2.temp_pattern=temp1_input cpu2.fanspeed='0' \
+  nic.exclude='surfshark_ipv6'
+
+  colors {
+    background #000000
+    statusline #B2A191
+    separator  #000000
+
+    focused_workspace  #000000 #131A17 #925B46
+    active_workspace   #000000 #262521 #B2A191
+    inactive_workspace #000000 #000000 #B2A191
+    urgent_workspace   #000000 #6E0000 #FFFFFF
+    binding_mode       #000000 #6E0000 #FFFFFF
+  }
+}
+
+bar {
+  font pango: FiraCode Nerd Font Mono SemiBold 10
+  position bottom
+  strip_workspace_numbers yes
+  status_command bumblebee-status \
+  -t ~/.config/sway/bumblebee_status/black-powerline \
+  -m progress cmus \
+  spacer spacer dunstctl sun datetime \
+  -p \
+  sun.lat=36.837239 sun.lon=-119.754197 \
+
+  colors {
+    background #000000
+    statusline #B2A191
+    separator  #000000
+
+    focused_workspace  #000000 #131A17 #925B46
+    active_workspace   #000000 #262521 #B2A191
+    inactive_workspace #000000 #000000 #B2A191
+    urgent_workspace   #000000 #6E0000 #FFFFFF
+    binding_mode       #000000 #6E0000 #FFFFFF
+  }
+}

@@ -1,0 +1,7 @@
+# set display
+output 'Goldstar Company Ltd LG TV SSCR2 0x00000101' {
+    mode 3840x2160@60.0000Hz
+    adaptive_sync off
+    # bg ~/pictures/pictures/wallpaper/000000.png stretch
+    scale 1
+}

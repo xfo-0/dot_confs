@@ -1,0 +1,132 @@
+include variables
+include outputs
+include autostart
+include theme
+include keyboard
+include /etc/sway/config.d/*
+
+# Read `man 5 sway` for reference.
+
+# mod1 key used for most binds
+# Mod1 = Alt
+# Mod4 = Super
+# set $Mod Mod4
+
+set $mod1 mod1
+set $mod mod4
+
+bindsym $mod1+$mod+Ctrl+Shift+s exec grimshot save active
+
+set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
+exec rm -f $WOBSOCK && mkfifo $WOBSOCK && tail -f $WOBSOCK | wob
+
+bindsym $mod+Down exec 'wob_vol down -s -v 1'
+bindsym $mod+Up exec 'wob_vol up -s -v 1'
+bindsym $mod+Right exec 'wob_vol down -s -v 10'
+bindsym $mod+Left exec 'wob_vol up -s -v 10'
+bindsym $mod+numbersign exec 'wob_vol togglemute'
+
+bindsym $mod+Shift+comma exec wlr_scale DP-1 down
+bindsym $mod+Shift+period exec wlr_scale DP-1 up
+bindsym $mod+braceright exec 'wlr_brightness  down -v 0.05'
+bindsym $mod+braceleft exec 'wlr_brightness up -v 0.05'
+bindsym $mod+Shift+0 exec wlr_temperature down -v 200
+bindsym $mod+Shift+9 exec wlr_temperature up -v 200
+
+bindsym $mod1+$mod+Ctrl+Shift+t exec 'warpd --hint2 && ydotool click 0xC0'
+bindsym $mod1+$mod+Ctrl+Shift+n exec 'warpd --grid && ydotool click 0xC0'
+exec wl-paste --watch cliphist store
+
+bindsym menu exec wlr-which-key
+bindsym $mod1+$mod+Ctrl+Shift+f exec wlr-which-key
+# bindsym $mod1+z exec /usr/bin/wezterm
+
+exec env RUST_BACKTRACE=1 RUST_LOG=swayr=debug swayrd > /tmp/swayrd.log 2>&1
+
+bindsym $mod1+Delete kill
+bindsym $mod1+Backspace exec swayr quit-window
+
+bindsym $mod+quotedbl exec swayr switch-window
+bindsym $mod+apostrophe exec swayr swap-focused-with
+
+bindsym $mod1+$mod+Ctrl+apostrophe floating enable, resize set 84ppt 84ppt, move position center
+bindsym $mod1+$mod+apostrophe floating toggle
+
+bindsym $mod1+$mod+Shift+6 exec ~/bin/sway_scratch
+bindsym $mod1+$mod+quotedbl move scratchpad
+bindsym $mod1+quotedbl scratchpad show
+bindsym $mod1+$mod+Ctrl+percent move position center
+
+bindsym $mod1+Left   focus left
+bindsym $mod1+Down   focus down
+bindsym $mod1+Up     focus up
+bindsym $mod1+Right  focus right
+
+bindsym $mod1+apostrophe focus mode_toggle
+# bindsym $Mod+p      focus parent
+bindsym $mod1+$mod+Left move left 45 px
+bindsym $mod1+$mod+Down move down 45 px
+bindsym $mod1+$mod+Up move up 45 px
+bindsym $mod1+$mod+Right move right 45 px
+
+mode "resize" {
+        bindsym $mod1+Left  resize shrink width 8 px or 8 ppt
+        bindsym $mod1+Down  resize grow height 8 px or 8 ppt
+        bindsym $mod1+Up    resize shrink height 8 px or 8 ppt
+        bindsym $mod1+Right resize grow width 8 px or 8 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod1+$mod+Shift+5 mode "default"
+}
+
+bindsym $mod1+$mod+percent mode "resize"
+bindsym $mod1+bracketright layout toggle stacking tabbed split
+bindsym $mod1+bracketleft layout toggle splitv splith
+bindsym $mod1+braceright split h
+bindsym $mod1+braceleft split v
+default_orientation horizontal
+
+# make the current focus fullscreen
+# bindsym $Mod+Shift+f fullscreen
+
+# workspace 5
+bindsym $mod1+ctrl+0 workspace next
+bindsym $mod1+ctrl+1 exec swayr move-focused-to-workspace
+bindsym $mod1+ctrl+2 workspace number 2
+bindsym $mod1+ctrl+3 exec swayr switch-workspace
+bindsym $mod1+ctrl+4 workspace number 4
+# bindsym $mod1+ctrl+Shift+5 exec swayr switch-workspace
+bindsym $mod1+ctrl+5 workspace number 5
+bindsym $mod1+ctrl+Shift+6 workspace wsp
+bindsym $mod1+ctrl+6 workspace number 6
+bindsym $mod1+ctrl+7 workspace number 7
+bindsym $mod1+ctrl+8 workspace number 8
+bindsym $mod1+ctrl+9 workspace number 9
+
+bindsym $mod1+Asterisk exec swaymsg bar bar-0 mode toggle
+bindsym $mod1+Plus exec swaymsg bar bar-1 mode toggle
+
+# focus, floating, & sticky
+for_window [app_id="(?i)(?:mpv|mpv_thumbnail_script_server)"] floating enable, resize set 84ppt 84ppt, move position center
+for_window [title="term_float_pick"] floating enable, resize set 35ppt 35ppt, move position center
+for_window [app_id="term_float"] floating enable, resize set 80ppt 80ppt, move position center
+for_window [title="fz-switcher"] floating enable, resize set 80ppt 80ppt, move position center
+for_window [title="nnn_preview_float"] floating enable, resize set 80ppt 80ppt, move position center
+for_window [title="wofi_note"] floating enable, resize set 60ppt 80ppt, move position center
+
+for_window [app_id="(?i)(?:blueman-manager|azote|gnome-disks)"] floating enable
+for_window [app_id="(?i)(?:pavucontrol|nm-connection-editor|gsimplecal|galculator)"] floating enable
+# for_window [app_id="(?i)(?:firefox|chromium)"] border none
+# For_window [title="(?i)(?:copying|deleting|moving)"] floating enable
+
+# alternate scratchpad group solution
+
+# for_window [app_id="dropdown_math"] move scratchpad
+# for_window [app_id="dropdown_math"] scratchpad show
+# bindsym $mod+m exec sh -c 'swaymsg [app_id="dropdown_math"] scratchpad show || exec $term --class dropdown_math -e python -q'
+
+# for_window [app_id="dropdown_term"] move scratchpad
+# for_window [app_id="dropdown_term"] scratchpad show
+# bindsym $mod+q exec sh -c 'swaymsg [app_id="dropdown_term"] scratchpad show || exec $term --class dropdown_term'
+
+# popup_during_fullscreen smart
