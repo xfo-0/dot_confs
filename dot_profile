@@ -1,7 +1,10 @@
 #!/bin/bash
 # export NNN_TRASH=1
+export NNN_ICONLOOKUP=1
 export NNN_ARCHIVE="\\.(7z|a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|rar|rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)$"
-export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_PAGER="bat"
+# export NNN_FIFO='/tmp/nnn.fifo'
+export NNN_TERMINAL='wezterm'
 # export NNN_BMS="d:$HOME/Documents;h:$HOME/;c:$HOME/.config;m:/run/media;t:$HOME/.local/share/Trash/files"
 
 export NNN_PLUG='a:mtpmount;c:cdpath;D:dotr;d:dragdrop;e:fzopen;f:fd;g:rg;i:preview-tui;l:kdeconnect;m:nmount;n:bulknew;o:openall;p:chmodr;q:cmusq;r:gitroot;s:autojump;t:kittypreview;x:trash;u:umounttree;v:diffs;y:yankr;'
@@ -69,7 +72,7 @@ export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"
 export HISTFILE="${XDG_STATE_HOME}/bash/history"
 
 export ZDOTDIR="${HOME}/.config/zsh"
-
+export ZSH_COMPDUMP="${XDG_CACHE_HOME}/zsh/compdump"
 export STARSHIP_CONFIG="${XDG_CONFIG_HOME}/starship/starship.toml"
 export STARSHIP_CACHE="${XDG_CACHE_HOME}/starship/cache"
 # export JQ_REPL_JQ=gojq
