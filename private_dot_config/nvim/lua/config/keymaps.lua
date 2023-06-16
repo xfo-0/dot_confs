@@ -11,8 +11,10 @@ local map = vim.keymap.set
 local del = vim.keymap.del
 ------------------------------------
 -- Normal  {{{
-vim.api.nvim_set_keymap("v", "t", "<Plug>(leap-forward)", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "T", "<Plug>(leap-backward)", { noremap = true, silent = true })
+
+map("n", "<cr>", "ciw", { silent = true })
+map("n", "<C-cr>", "ciq", { silent = true })
+map("n", "<M-cr>", "cib", { silent = true })
 
 -- del("n", "")
 map("n", "<M-Esc>", ":close!<cr>", { silent = true })
@@ -55,6 +57,12 @@ map("i", ";", ";<c-g>u")
 --    }}}
 ------------------------------------
 -- Visual  {{{
+vim.api.nvim_set_keymap("v", "t", "<Plug>(leap-forward)", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "T", "<Plug>(leap-backward)", { noremap = true, silent = true })
+
+-- yank without cursor reset
+vim.api.nvim_set_keymap("v", "y", "ygv<esc>", { silent = true })
+
 -- Stay in indent mode
 map("v", "<", "<gv")
 map("v", ">", ">gv")

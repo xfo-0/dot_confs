@@ -162,6 +162,7 @@ return {
     },
     config = function()
       require("neorg").setup {
+        dedent_excess = true,
         load = {
           ["core.defaults"] = {}, -- Loads default behaviour
           ["core.concealer"] = {}, -- Adds pretty icons to your documents

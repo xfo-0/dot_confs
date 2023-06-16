@@ -246,153 +246,220 @@ return {
   },
   },
   {
-    "stevearc/aerial.nvim",
+    "simrat39/symbols-outline.nvim",
     event = "VeryLazy",
-    -- config = true,
     opts = {
-      -- Priority list of preferred backends for aerial.
-      -- This can be a filetype map (see :help aerial-filetype-map)
-      backends = { "treesitter", "lsp", "markdown", "man" },
-
-      layout = {
-        max_width = { 40, 0.2 },
-        width = nil,
-        min_width = 10,
-        default_direction = "prefer_right",
-        placement = "window",
-        preserve_equality = false,
-      },
-      attach_mode = "window",
-      close_automatic_events = {},
-      keymaps = {
-        ["?"] = "actions.show_help",
-        ["g?"] = "actions.show_help",
-        ["<CR>"] = "actions.jump",
-        ["<2-LeftMouse>"] = "actions.jump",
-        ["<C-v>"] = "actions.jump_vsplit",
-        ["<C-s>"] = "actions.jump_split",
-        ["p"] = "actions.scroll",
-        ["<C-j>"] = "actions.down_and_scroll",
-        ["<C-k>"] = "actions.up_and_scroll",
-        ["{"] = "actions.prev",
-        ["}"] = "actions.next",
-        ["[["] = "actions.prev_up",
-        ["]]"] = "actions.next_up",
-        ["q"] = "actions.close",
-        ["o"] = "actions.tree_toggle",
-        ["za"] = "actions.tree_toggle",
-        ["O"] = "actions.tree_toggle_recursive",
-        ["zA"] = "actions.tree_toggle_recursive",
-        ["l"] = "actions.tree_open",
-        ["zo"] = "actions.tree_open",
-        ["L"] = "actions.tree_open_recursive",
-        ["zO"] = "actions.tree_open_recursive",
-        ["h"] = "actions.tree_close",
-        ["zc"] = "actions.tree_close",
-        ["H"] = "actions.tree_close_recursive",
-        ["zC"] = "actions.tree_close_recursive",
-        ["zr"] = "actions.tree_increase_fold_level",
-        ["zR"] = "actions.tree_open_all",
-        ["zm"] = "actions.tree_decrease_fold_level",
-        ["zM"] = "actions.tree_close_all",
-        ["zx"] = "actions.tree_sync_folds",
-        ["zX"] = "actions.tree_sync_folds",
-      },
-      lazy_load = false,
-      disable_max_lines = 10000,
-      disable_max_size = 2000000, -- Default 2MB
-      filter_kind = {
-        "Class",
-        "Constructor",
-        "Enum",
-        "Function",
-        "Interface",
-        "Module",
-        "Method",
-        "Struct",
-      },
-      highlight_mode = "split_width",
-      highlight_closest = true,
-      highlight_on_hover = false,
-      highlight_on_jump = 300,
-      icons = {},
-      ignore = {
-        unlisted_buffers = false,
-        filetypes = {},
-        buftypes = "special",
-        wintypes = "special",
-      },
-      manage_folds = false,
-      link_folds_to_tree = false,
-      link_tree_to_folds = true,
-      nerd_font = "auto",
-      on_attach = function(bufnr)
-        -- Jump forwards/backwards with '{' and '}'
-        vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-        vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-      end,
-      on_first_symbols = function(bufnr) end,
-      open_automatic = function(bufnr)
-        return vim.api.nvim_buf_line_count(bufnr) > 80
-          -- Enforce a minimum symbol count
-          and require("aerial").num_symbols(bufnr) > 4
-          -- A useful way to keep aerial closed when closed manually
-          and not require("aerial").was_closed()
-      end,
-      post_jump_cmd = "normal! zz",
-      post_parse_symbol = function(bufnr, item, ctx)
-        return true
-      end,
-      post_add_all_symbols = function(bufnr, items, ctx)
-        return items
-      end,
-
-      close_on_select = false,
-      update_events = "TextChanged,InsertLeave",
+      highlight_hovered_item = true,
       show_guides = true,
-      guides = {
-        mid_item = "├─",
-        last_item = "└─",
-        nested_top = "│ ",
-        whitespace = "  ",
+      auto_preview = false,
+      position = "right",
+      relative_width = true,
+      width = 22,
+      auto_close = false,
+      show_numbers = false,
+      show_relative_numbers = false,
+      show_symbol_details = true,
+      preview_bg_highlight = "Pmenu",
+      autofold_depth = 3,
+      auto_unfold_hover = true,
+      fold_markers = { "", "" },
+      wrap = false,
+      keymaps = { -- These keymaps can be a string or a table for multiple keys
+        close = { "<Esc>", "q" },
+        goto_location = "<Cr>",
+        focus_location = "o",
+        hover_symbol = "h",
+        toggle_preview = "k",
+        rename_symbol = "r",
+        code_actions = "a",
+        fold = "f",
+        unfold = "<C-f>",
+        fold_all = "W",
+        unfold_all = "M",
+        fold_reset = "R",
       },
-      get_highlight = function(symbol, is_icon)
-        -- return "MyHighlight" .. symbol.kind
-      end,
-      float = {
-        border = "rounded",
-        relative = "cursor",
-        max_height = 0.9,
-        height = nil,
-        min_height = { 8, 0.1 },
-        override = function(conf, source_winid)
-          -- This is the config that will be passed to nvim_open_win.
-          -- Change values here to customize the layout
-          return conf
-        end,
-      },
-
-      lsp = {
-        diagnostics_trigger_update = false,
-        update_when_errors = true,
-        update_delay = 300,
-        priority = {
-          -- pyright = 10,
-        },
-      },
-      treesitter = {
-        update_delay = 300,
-      },
-
-      markdown = {
-        update_delay = 300,
-      },
-
-      man = {
-        update_delay = 300,
+      lsp_blacklist = {},
+      symbol_blacklist = {},
+      symbols = {
+        File = { icon = "", hl = "@text.uri" },
+        Module = { icon = "", hl = "@namespace" },
+        Namespace = { icon = "", hl = "@namespace" },
+        Package = { icon = "", hl = "@namespace" },
+        Class = { icon = "𝓒", hl = "@type" },
+        Method = { icon = "ƒ", hl = "@method" },
+        Property = { icon = "", hl = "@method" },
+        Field = { icon = "", hl = "@field" },
+        Constructor = { icon = "", hl = "@constructor" },
+        Enum = { icon = "ℰ", hl = "@type" },
+        Interface = { icon = "ﰮ", hl = "@type" },
+        Function = { icon = "", hl = "@function" },
+        Variable = { icon = "", hl = "@constant" },
+        Constant = { icon = "", hl = "@constant" },
+        String = { icon = "𝓐", hl = "@string" },
+        Number = { icon = "#", hl = "@number" },
+        Boolean = { icon = "⊨", hl = "@boolean" },
+        Array = { icon = "", hl = "@constant" },
+        Object = { icon = "⦿", hl = "@type" },
+        Key = { icon = "🔐", hl = "@type" },
+        Null = { icon = "NULL", hl = "@type" },
+        EnumMember = { icon = "", hl = "@field" },
+        Struct = { icon = "𝓢", hl = "@type" },
+        Event = { icon = "🗲", hl = "@type" },
+        Operator = { icon = "+", hl = "@operator" },
+        TypeParameter = { icon = "𝙏", hl = "@parameter" },
+        Component = { icon = "", hl = "@function" },
+        Fragment = { icon = "", hl = "@constant" },
       },
     },
   },
+  -- {
+  --   "stevearc/aerial.nvim",
+  --   event = "VeryLazy",
+  --   -- config = true,
+  --   opts = {
+  --     -- Priority list of preferred backends for aerial.
+  --     -- This can be a filetype map (see :help aerial-filetype-map)
+  --     backends = { "treesitter", "lsp", "markdown", "man" },
+
+  --     layout = {
+  --       max_width = { 40, 0.2 },
+  --       width = nil,
+  --       min_width = 10,
+  --       default_direction = "prefer_right",
+  --       placement = "window",
+  --       preserve_equality = false,
+  --     },
+  --     attach_mode = "window",
+  --     close_automatic_events = {},
+  --     keymaps = {
+  --       ["?"] = "actions.show_help",
+  --       ["g?"] = "actions.show_help",
+  --       ["<CR>"] = "actions.jump",
+  --       ["<2-LeftMouse>"] = "actions.jump",
+  --       ["<C-v>"] = "actions.jump_vsplit",
+  --       ["<C-s>"] = "actions.jump_split",
+  --       ["p"] = "actions.scroll",
+  --       ["<C-j>"] = "actions.down_and_scroll",
+  --       ["<C-k>"] = "actions.up_and_scroll",
+  --       ["{"] = "actions.prev",
+  --       ["}"] = "actions.next",
+  --       ["[["] = "actions.prev_up",
+  --       ["]]"] = "actions.next_up",
+  --       ["q"] = "actions.close",
+  --       ["o"] = "actions.tree_toggle",
+  --       ["za"] = "actions.tree_toggle",
+  --       ["O"] = "actions.tree_toggle_recursive",
+  --       ["zA"] = "actions.tree_toggle_recursive",
+  --       ["l"] = "actions.tree_open",
+  --       ["zo"] = "actions.tree_open",
+  --       ["L"] = "actions.tree_open_recursive",
+  --       ["zO"] = "actions.tree_open_recursive",
+  --       ["h"] = "actions.tree_close",
+  --       ["zc"] = "actions.tree_close",
+  --       ["H"] = "actions.tree_close_recursive",
+  --       ["zC"] = "actions.tree_close_recursive",
+  --       ["zr"] = "actions.tree_increase_fold_level",
+  --       ["zR"] = "actions.tree_open_all",
+  --       ["zm"] = "actions.tree_decrease_fold_level",
+  --       ["zM"] = "actions.tree_close_all",
+  --       ["zx"] = "actions.tree_sync_folds",
+  --       ["zX"] = "actions.tree_sync_folds",
+  --     },
+  --     lazy_load = false,
+  --     disable_max_lines = 10000,
+  --     disable_max_size = 2000000, -- Default 2MB
+  --     filter_kind = {
+  --       "Class",
+  --       "Constructor",
+  --       "Enum",
+  --       "Function",
+  --       "Interface",
+  --       "Module",
+  --       "Method",
+  --       "Struct",
+  --     },
+  --     highlight_mode = "split_width",
+  --     highlight_closest = true,
+  --     highlight_on_hover = false,
+  --     highlight_on_jump = 300,
+  --     icons = {},
+  --     ignore = {
+  --       unlisted_buffers = false,
+  --       filetypes = {},
+  --       buftypes = "special",
+  --       wintypes = "special",
+  --     },
+  --     manage_folds = false,
+  --     link_folds_to_tree = false,
+  --     link_tree_to_folds = true,
+  --     nerd_font = "auto",
+  --     on_attach = function(bufnr)
+  --       -- Jump forwards/backwards with '{' and '}'
+  --       vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+  --       vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+  --     end,
+  --     on_first_symbols = function(bufnr) end,
+  --     open_automatic = function(bufnr)
+  --       return vim.api.nvim_buf_line_count(bufnr) > 80
+  --         -- Enforce a minimum symbol count
+  --         and require("aerial").num_symbols(bufnr) > 4
+  --         -- A useful way to keep aerial closed when closed manually
+  --         and not require("aerial").was_closed()
+  --     end,
+  --     post_jump_cmd = "normal! zz",
+  --     post_parse_symbol = function(bufnr, item, ctx)
+  --       return true
+  --     end,
+  --     post_add_all_symbols = function(bufnr, items, ctx)
+  --       return items
+  --     end,
+
+  --     close_on_select = false,
+  --     update_events = "TextChanged,InsertLeave",
+  --     show_guides = true,
+  --     guides = {
+  --       mid_item = "├─",
+  --       last_item = "└─",
+  --       nested_top = "│ ",
+  --       whitespace = "  ",
+  --     },
+  --     get_highlight = function(symbol, is_icon)
+  --       -- return "MyHighlight" .. symbol.kind
+  --     end,
+  --     float = {
+  --       border = "rounded",
+  --       relative = "cursor",
+  --       max_height = 0.9,
+  --       height = nil,
+  --       min_height = { 8, 0.1 },
+  --       override = function(conf, source_winid)
+  --         -- This is the config that will be passed to nvim_open_win.
+  --         -- Change values here to customize the layout
+  --         return conf
+  --       end,
+  --     },
+
+  --     lsp = {
+  --       diagnostics_trigger_update = false,
+  --       update_when_errors = true,
+  --       update_delay = 300,
+  --       priority = {
+  --         -- pyright = 10,
+  --       },
+  --     },
+  --     treesitter = {
+  --       update_delay = 300,
+  --     },
+
+  --     markdown = {
+  --       update_delay = 300,
+  --     },
+
+  --     man = {
+  --       update_delay = 300,
+  --     },
+  --   },
+  -- },
   {
     "mhanberg/output-panel.nvim",
     event = "VeryLazy",

@@ -285,6 +285,7 @@ return {
   },
   {
     "L3MON4D3/LuaSnip",
+    event = "VeryLazy",
     dependencies = {
       {
         "rafamadriz/friendly-snippets",
@@ -331,14 +332,14 @@ return {
       -- { "<C-o>", function() require("luasnip").jump(-1) end, mode = { "i", "s" } },
     -- },
 		config = function(_, opts)
-			require("luasnip").setup(opts)
+			-- require("luasnip").setup(opts)
 
-			local snippets_folder = vim.fn.stdpath("config") .. "/lua/plugins/completion/snippets/"
-			require("luasnip.loaders.from_lua").lazy_load({ paths = snippets_folder })
+			-- local snippets_folder = vim.fn.stdpath("config") .. "/lua/plugins/completion/snippets/"
+			-- require("luasnip.loaders.from_lua").lazy_load({ paths = snippets_folder })
 
-			vim.api.nvim_create_user_command("LuaSnipEdit", function()
-				require("luasnip.loaders.from_lua").edit_snippet_files()
-			end, {})
+			-- vim.api.nvim_create_user_command("LuaSnipEdit", function()
+			-- 	require("luasnip.loaders.from_lua").edit_snippet_files()
+			-- end, {})
 		end,
   },
 }
