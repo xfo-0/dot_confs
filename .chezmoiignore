@@ -1,27 +1,27 @@
 key.txt.age
 
 # git
-.git/
-.gitignore
-.gitattributes
+**/.git/
+**/.gitignore
+**/.gitattributes
 
 # nnn tmp
-.lastd
-.selection
+**/.lastd
+**/.selection
 
-config.old
+**/config.old
 
-cache.db
-cache.db.lock
+**/cache.db
+**/cache.db.lock
 
-error.log
+**/error.log
 
 # mail
-.mailsynclastrun
-msmtp.log
+**/.mailsynclastrun
+**/msmtp.log
 
 # ipython
-log/
-pid/
-cache/
-history.sqlite
+**/log/
+**/pid/
+**/cache/
+**/history.sqlite

@@ -29,6 +29,7 @@
     colorMoved = default
 [init]
 	defaultBrach = main
+	defaultBranch = main
 [protocol "file"]
 	allow = 1
 	allow = always
@@ -37,3 +38,17 @@
 [user]
 	email = ded.dylan04@gmail.com
 	name = xfo-0
+[maintenance]
+	repo = /home/xfo/.local/share/zsh/znap
+	repo = /home/xfo/.local/share/zsh/aureliojargas/clitest
+	repo = /home/xfo/.local/share/zsh/djui/alias-tips
+	repo = /home/xfo/.local/share/zsh/hlissner/zsh-autopair
+	repo = /home/xfo/.local/share/zsh/ianthehenry/zsh-autoquoter
+	repo = /home/xfo/.local/share/zsh/jeffreytse/zsh-vi-mode
+	repo = /home/xfo/.local/share/zsh/kutsan/zsh-system-clipboard
+	repo = /home/xfo/.local/share/zsh/mafredri/zsh-async
+	repo = /home/xfo/.local/share/zsh/marlonrichert/zsh-autocomplete
+	repo = /home/xfo/.local/share/zsh/reegnz/jq-zsh-plugin
+	repo = /home/xfo/.local/share/zsh/zdharma-continuum/fast-syntax-highlighting
+	repo = /home/xfo/.local/share/zsh/zsh-users/zsh-autosuggestions
+	repo = /home/xfo/.local/share/zsh/zsh-users/zsh-completions

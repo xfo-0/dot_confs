@@ -1,0 +1,10 @@
+width=40%
+height=40%
+gtk_dark=true
+allow_markup=true
+dynamic_lines=false
+
+key_left=left
+key_right=right
+key_forward=Ctrl_L+t
+key_backward=Ctrl_L+e

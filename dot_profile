@@ -64,7 +64,7 @@ export NOTES="${HOME}/notes/"
 
 export BROWSER=/usr/bin/qutebrowser
 
-export TERMINAL=/usr/bin/wezterm
+export TERMINAL=/usr/local/bin/wezterm
 export FLOAT_TERM=/usr/bin/alacritty
 export TERMINFO="${XDG_DATA_HOME}/terminfo"
 export TERMINFO_DIRS="${XDG_DATA_HOME}/terminfo:/usr/share/terminfo"

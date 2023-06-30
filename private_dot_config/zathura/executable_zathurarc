@@ -1,0 +1,7 @@
+set selection-clipboard clipboard
+set recolor true
+
+map D set "first-page-column 1:1"
+map b feedkeys ":bmark "
+map B feedkeys ":blist <Tab>"
+/* map <C-d> set "first-page-column 1:2" */
