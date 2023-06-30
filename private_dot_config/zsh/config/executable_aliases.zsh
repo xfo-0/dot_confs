@@ -86,14 +86,14 @@ alias fz='fzf '
 # lolcate {{{
 
 # ___________________________________________________________________
-alias lc='lolcate '
-alias lcd='lolcate --db '
-alias lcu='lolcate --update '
-alias lcud='lolcate --update --db '
-alias lcua='lolcate --update --all '
-alias lcb='lolcate --basename '
-alias lct='lolcate --type '
-alias lci='lolcate --info '
+# alias lc='lolcate '
+# alias lcd='lolcate --db '
+# alias lcu='lolcate --update '
+# alias lcud='lolcate --update --db '
+# alias lcua='lolcate --update --all '
+# alias lcb='lolcate --basename '
+# alias lct='lolcate --type '
+# alias lci='lolcate --info '
 # ___________________________________________________________________
 
 #  }}}
@@ -124,9 +124,11 @@ alias ni='navi ' # command summary/overview tui
 alias nic='navi --cheatsh ' # command summary/overview
 alias nit='navi --tldr ' # command summary/overview
 
-alias bt='bat '
+# alias bt='bat '
 alias zth='zathura '
+compdef zth='zathura'
 alias dlt='delta '
+compdef dlt='delta'
 # ddh: finding duplicate files
 # lso czkawka for more extensive unnecessary file removal
 alias mn='man -P bat '
@@ -138,10 +140,11 @@ alias pbt='| bat '
 
 # edit  {{{
 
-alias vm='/usr/local/bin/nvim '
-alias vn='vm ~/notes/index.norg '
-alias vnp='vm /home/xfo/projects/projects.norg '
-alias pvm='| vm '
+alias vm='$XDG_DATA_HOME/bob/nvim-bin/nvim '
+compdef vm='nvim'
+alias vn='vm /home/xfo/system/notes/index.norg '
+alias vnp='vm /home/xfo/system/projects/projects.norg '
+alias pvm='| $EDITOR '
 
 alias xr='/usr/bin/xplr '
 alias nnn='n -HEUGdixroe '
@@ -149,9 +152,19 @@ alias nnp='n -HEUGdixroea -P i '
 
 alias wex='watchexec ' # watch for path modifications and execute
 
+# attr/permission {{{
+
+# chmod
+# chown
+# getfacl/setfacl
+# attr/getfattr/setfattr
+
+# }}}
+
 # compression  {{{
 
 alias ou='ouch'
+compdef ou='ouch'
 alias oud='ouch decompress '
 alias ouc='ouch compress '
 alias oul='ouch list '
@@ -218,6 +231,7 @@ alias srmr='sudo rm -r '
 alias srmr='sudo rm -r '
 
 alias tr='trash '
+compdef tr='trash'
 alias trash-cli='trash '
 alias trash-put='trash put '
 alias trl='trash list'
@@ -232,6 +246,7 @@ alias trez="trash list | ${FZ_PICKER} --multi | awk '{print}' | rev | cut -d ' '
 # alias sed
 # sd # intuitive find and replace cli, alternative to sed
 alias srt='sort '
+compdef srt='sort'
 # hck # rougher form of cut
 alias chs='choose ' # cut alternative, sometimes awk
 alias rgs='rargs ' # xargs/awk pattern matching util
@@ -251,6 +266,7 @@ alias rgs='rargs ' # xargs/awk pattern matching util
 # process management  {{{
 
 alias scu="systemctl --user "
+compdef scu='systemctl'
 alias scus="systemctl --user start "
 alias scux="systemctl --user stop "
 alias scure="systemctl --user restart "
@@ -261,6 +277,7 @@ alias sculse="systemctl --user --type=service --state=enabled"
 alias sculne="systemctl --user list-unit-files --state=enabled"
 
 alias sc="sdo systemctl "
+compdef sc='systemctl'
 alias scs="sdo systemctl start "
 alias scx="sdo systemctl stop "
 alias scre="sdo systemctl restart "
@@ -273,6 +290,7 @@ alias sclne="sdo systemctl list-unit-files --state=enabled"
 alias rwh='sdo pkill -HUP swhkd' # reload sxhkd config
 
 alias hlr='handlr '
+compdef hlr='handlr'
 
 alias trp='trap -p '
 alias trpl="kill -l | while read -r line; do printf ' %2s) SIG%s' $line $line; done | xargs printf '%-15s %-15s %-15s %s\n'"
@@ -291,6 +309,7 @@ alias byth='bythound ' # system memory profiler
 
 # TODO: add xargs type command for piping into tmux send keys to preserve zsh completion
 alias tx='tmux '
+compdef tx='tmux'
 alias txa='tmux attach -t '
 alias txd='tmux detach '
 alias txad='tmux attach -d -t '
@@ -307,6 +326,7 @@ alias txks='tmux kill-session -t '
 alias ld='lazydocker '
 
 alias dk='docker '
+compdef dk='docker'
 alias dkr='docker run '
 alias dkcr='docker-compose run '
 alias dkcup='docker-compose up '
@@ -352,10 +372,10 @@ alias ndkb='docker build --gpus all '
 alias ndkc='docker compose --gpus all '
 alias ndkrm='docker rm --gpus all '
 alias ndkrmi='docker rmi --gpus all '
-alias dkfq='docker-compose -f trade.yml run --rm freqtrade '
-alias dkfqtrade='docker-compose -f trade.yml up -d '
-alias dkfqd='docker-compose run --rm freqtrade download-data '
-alias dkfqb='docker-compose run --rm freqtrade backtesting --config '
+# alias dkfq='docker-compose -f trade.yml run --rm freqtrade '
+# alias dkfqtrade='docker-compose -f trade.yml up -d '
+# alias dkfqd='docker-compose run --rm freqtrade download-data '
+# alias dkfqb='docker-compose run --rm freqtrade backtesting --config '
 
 #  }}}
 
@@ -364,9 +384,10 @@ alias dkfqb='docker-compose run --rm freqtrade backtesting --config '
 
 # --------------------------------------------
 
-# network/peripherals  {{{
+# network/penripherals  {{{
 
 alias trp='trip '
+compdef trp='trip'
 alias bndw='bandwhich '
 
 alias sptst='speedtest-rs'
@@ -405,6 +426,7 @@ alias nm='neomutt '
 # mullvad {{{
 
 alias mlv='mullvad '
+compdef mlv='mullvad'
 alias mlx='mullvad-exclude '
 alias mlst='mullvad status -v '
 alias mlc='mullvad connect '
@@ -417,6 +439,7 @@ alias mlt='mullvad relay '
 # kdeconnect  {{{
 
 alias kdc='kdeconnect-cli '
+compdef kdc='kdeconnect-cli'
 alias kdh='kdeconnect-handlr '
 
 #  }}}
@@ -459,6 +482,7 @@ alias qmf='qmk flash -kb kbdfans/kbd67/mkiirgb/v2 -km '
 
 alias jpk='python -m ipykernel install --user --name='
 alias jpmkp='python -m jupyter_ascending.scripts.make_pair --base '
+alias jp='jupyter '
 alias jpn='jupyter notebook '
 alias jpl='jupyter lab '
 
@@ -467,6 +491,7 @@ alias jpl='jupyter lab '
 # python  {{{
 
 alias pyt='python '
+compdef pyt='python'
 alias pyp='pypy '
 alias jd='johnnydep '
 # TODO: xargs for using different chat session aliases w/ commands (no localized sessions full feature tui's currently)
@@ -528,6 +553,7 @@ alias mmlvdt='conda-leaves package --name '
 # mamba  {{{
 
 alias mm='mamba '
+# compdef mm='mamba'
 alias mme='mamba activate '
 alias mmqr='mamba repoquery -t '
 alias mmde='mamba deactivate '
@@ -553,20 +579,24 @@ alias mmer='mamba env remove --name '
 # micromamba {{{
 
 alias mi='micromamba '
+alias mile='micromamba env list '
 alias mie='micromamba activate '
-alias miqr='micromamba repoquery -t '
 alias mide='micromamba deactivate '
-alias mile='micromamba info --envs '
+alias miqr='micromamba repoquery -t '
 alias mil='micromamba info '
+alias micl='micromamba clean '
+alias micla='micromamba clean -a '
+alias miclad='micromamba clean -a --dry-run '
 alias miu='micromamba update '
+alias miuc='micromamba update -c conda-forge '
 alias miq='micromamba search '
+alias miqc='micromamba search -c conda-forge '
 alias mii='micromamba install '
+alias miic='micromamba install -c conda-forge '
 alias micr='micromamba create -n '
 alias micrc='micromamba create --clone '
 alias mils='micromamba list '
 alias milz='micromamba list | ${FZ_PICKER} '
-alias milr='micromamba list --revisions '
-alias miir='micromamba install --revision '
 alias mir='micromamba remove '
 alias mier='micromamba env remove --name '
 
@@ -581,9 +611,10 @@ alias mier='micromamba env remove --name '
 
 # TODO: script to read userinput for strategy, config, and other parameters with options for defaults
 alias fqt='freqtrade '
+# compdef fqt='freqtrade'
 alias fqtdk='freqtrade download-data -c user_data/configs/kucoin_empty.json -t 1m 3m 5m 15m 30m 1h 2h 4h 6h 8h 12h 1d --data-format-ohlcv hdf5'
-alias fqku='~/git/ds/trade/exchange-proxy/dist/exchange-proxy -port 8080 -verbose 1 '
-alias fqtr='bash ~/Scripts/freqtrade_helper.sh '
+alias fqku='~/git/exchange-proxy/dist/exchange-proxy -port 8080 -verbose 1 '
+# alias fqtr='bash ~/Scripts/freqtrade_helper.sh '
 # alias fqtr1='freqtrade trade --strategy st00 --config user_data/strategies/configs/cfg.json --config user_data/strategies/configs/cp.json '
 
 #  }}}
@@ -615,6 +646,7 @@ alias jqr='jq-repl '
 # zsh  {{{
 
 alias zp='znap '
+compdef zp='znap'
 alias zc='znap clean '
 alias zcl='znap clone '
 alias zcml='znap compile '
@@ -638,7 +670,7 @@ alias zst='znap status '
 
 # version/key management  {{{
 
-alias tg='topgrade '
+# alias tg='topgrade '
 
 # git  {{{
 
@@ -708,6 +740,7 @@ function git_develop_branch() {
 
 
 alias g='git'
+compdef g='git'
 
 alias ga='git add'
 alias gaa='git add --all'
@@ -993,6 +1026,7 @@ unset git_version
 
 alias lgo="lazygit -p /home/xfo/git/system/dot/dotfiles "
 alias oi="chezmoi "
+compdef oi='chezmoi'
 alias oicd="chezmoi cd "
 alias oiz="cd $(chezmoi source-path) "
 alias oie="chezmoi edit --apply "
@@ -1032,6 +1066,7 @@ alias mirrora="sudo reflector --latest 50 --number 20 --sort age --save /etc/pac
 alias aufx="sudo pacman-key --init && sudo pacman-key --populate archlinux && sudo pacman-key --refresh-keys"
 
 alias au='paru '
+compdef au='paru'
 alias aux='paru -R '
 alias auz='paruz '
 alias auxz='paruz -R '
@@ -1122,7 +1157,7 @@ alias vwof='vm /home/xfo/.config/wofi/config '
 alias voi="vm /home/xfo/.config/chezmoi/chezmoi.toml "
 alias vtg="vm /home/xfo/.config/topgrade.toml "
 
-alias vtm='vm /home/xfo/.config/tmux/tmux.conf '
+alias vtx='vm /home/xfo/.config/tmux/tmux.conf '
 alias valac='vm /home/xfo/.config/alacritty/alacritty.yml '
 alias vkit='vm /home/xfo/.config/kitty/kitty.conf'
 alias vwez='vm /home/xfo/.config/wezterm/wezterm.lua'
@@ -1138,14 +1173,16 @@ alias vq='vm /home/xfo/.config/qutebrowser/config.py '
 alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
 
 alias vzrc='vm /home/xfo/.config/zsh/.zshrc '
-alias vza='vm /home/xfo/.config/zsh/config/aliases.zsh '
-alias vzw='vm /home/xfo/.config/zsh/config/widgets.zsh '
-alias vzkb='vm /home/xfo/.config/zsh/config/keymaps.zsh '
-alias vze='vm /home/xfo/.config/zsh/config/exports.zsh '
-alias vzf='vm /home/xfo/.config/zsh/config/functions.zsh '
-alias vzl='vm /home/xfo/.config/zsh/config/load.zsh '
-alias vzp='vm /home/xfo/.config/zsh/config/plugins.zsh '
 alias vzpr='vm /home/xfo/.config/zsh/.zprofile '
+alias vzl='vm /home/xfo/.config/zsh/.zlogin '
+alias vza='vm /home/xfo/.config/zsh/config/aliases.zsh '
+alias vzw='vm /home/xfo/.config/zsh/config/widgets.sh '
+alias vzb='vm /home/xfo/.config/zsh/config/bind.zsh'
+alias vze='vm /home/xfo/.config/zsh/config/env.zsh '
+alias vzf='vm /home/xfo/.config/zsh/config/func.zsh '
+alias vzc='vm /home/xfo/.config/zsh/config/comp.zsh '
+alias vzh='vm /home/xfo/.config/zsh/config/hist.zsh '
+alias vzm='vm /home/xfo/.config/zsh/config/misc.zsh '
 
 alias vvm='vm /home/xfo/.config/nvim/init.lua '
 alias vvmp='vm /home/xfo/.config/nvim/lua/user/plugins.lua '
@@ -1161,11 +1198,12 @@ alias vvd='vivid ' # LS_COLORS generator
 
 alias bitw='bitwise ' # bit calculator
 
-alias bt='bartib ' # time tasks
+# alias bt='bartib ' # time tasks
 
 # task
 alias tt='taskwarrior-tui '
 alias t='task '
+compdef t='task'
 alias tmc='task count '
 alias tmi='task information'
 alias tmp='task projects '
