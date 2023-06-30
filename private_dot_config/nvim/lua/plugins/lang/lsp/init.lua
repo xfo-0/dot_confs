@@ -176,11 +176,7 @@ return {
           -- nfor.jq,
           nfor.deno_fmt,
           -- nfor.dprint.with { find_cfg_path("dprint.json", "~/.config/lint/dprint/") },
-          nfor.ruff.with {
-            extra_args = {
-              "--config" .. find_cfg_path("pyproject.toml", "~/.config/lint/ruff/"),
-            },
-          },
+          nfor.ruff,
           ndia.todo_comments,
           ndia.trail_space,
           ndia.commitlint,
@@ -191,11 +187,7 @@ return {
           ndia.shellcheck,
           -- ndia.yamllint,
           ndia.zsh,
-          ndia.ruff.with {
-            extra_args = {
-              "--config" .. find_cfg_path("pyproject.toml", "~/.config/lint/ruff/"),
-            },
-          },
+          ndia.ruff,
           ndia.selene.with {
             cwd = function(_params)
               return vim.fs.dirname(vim.fs.find({ "selene.toml" }, {
