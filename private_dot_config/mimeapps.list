@@ -14,4 +14,5 @@ x-scheme-handler/discord=/usr/share/applications/discord.desktop;
 x-scheme-handler/http=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/https=org.qutebrowser.qutebrowser.desktop;
 x-scheme-handler/mailto=/usr/share/applications/neomutt-float.desktop;
+x-scheme-handler/nyxt=nyxt.desktop;
 x-scheme-handler/terminal=Alacritty.desktop;
