@@ -140,11 +140,11 @@ alias pbt='| bat '
 
 # edit  {{{
 
-alias vm='$XDG_DATA_HOME/bob/nvim-bin/nvim '
-compdef vm='nvim'
-alias vn='vm /home/xfo/system/notes/index.norg '
-alias vnp='vm /home/xfo/system/projects/projects.norg '
-alias pvm='| $EDITOR '
+alias v='$XDG_DATA_HOME/bob/nvim-bin/nvim '
+compdef v='nvim'
+alias vn="$EDITOR /home/xfo/system/notes/index.norg "
+alias vnp="$EDITOR /home/xfo/system/projects/projects.norg "
+alias pve="| $EDITOR "
 
 alias xr='/usr/bin/xplr '
 alias nnn='n -HEUGdixroe '
@@ -216,7 +216,8 @@ mkc ()
 {
     mkdir -p -- "$1" &&
        cd -P -- "$1"
-     }
+}
+
 alias mk='mkdir -p '
 alias smk='sudo mkdir '
 # alias ddx='dd '
@@ -384,7 +385,7 @@ alias ndkrmi='docker rmi --gpus all '
 
 # --------------------------------------------
 
-# network/penripherals  {{{
+# network {{{
 
 alias trp='trip '
 compdef trp='trip'
@@ -395,9 +396,10 @@ alias pn="gping "
 
 alias wkp="wiki-tui "
 
+alias fxb='feroxbuster ' # scan unreferenced web content
+
 # blokator  {{{
 
-#
 alias bka='blokator '
 alias bkac='blokator -s '
 alias bkaa='blokator -a '
@@ -444,17 +446,28 @@ alias kdh='kdeconnect-handlr '
 
 #  }}}
 
-# lifx  {{{
-
-alias lx='lifx  '
 
 #  }}}
 
-# lg webos  {{{
+# --------------------------------------------
 
-alias lgt="webostv "
-alias lgx="webostv power off $LOCAL_LG_ADR $LOCAL_LG "
-alias lgo="webostv power on $LOCAL_LG_ADR $LOCAL_LG "
+# penripherals {{{
+
+# ports {{{
+
+alias lspl='lsplug '
+
+# rustscan  {{{
+
+alias rsc='rustscan '
+
+# }}}
+
+# }}}
+
+# lifx  {{{
+
+alias lx='lifx  '
 
 #  }}}
 
@@ -468,11 +481,18 @@ alias qmf='qmk flash -kb kbdfans/kbd67/mkiirgb/v2 -km '
 
 # bluetooth  {{{
 
-#
+
+# }}}
+
+# lg webos  {{{
+
+alias lgt="webostv "
+alias lgx="webostv power off $LOCAL_LG_ADR $LOCAL_LG "
+alias lgo="webostv power on $LOCAL_LG_ADR $LOCAL_LG "
 
 #  }}}
 
-#  }}}
+# }}}
 
 # --------------------------------------------
 
@@ -1121,7 +1141,7 @@ alias gpgr="gpg2 --keyserver-options auto-key-retrieve --receive-keys" # receive
 # or provided paths
 # provide a map of filenames and paths for fzf menu
 function vocp() {
-    alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
+    alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
     expanded_command=$(alias vqa)
     filepath=$(echo "$expanded_command" | grep -oE '\S+(~/|\./|/).* ')
     echo -n "$filepath" | ${COPY_CMD}
@@ -1129,64 +1149,64 @@ function vocp() {
 }
 # alias vd="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/ | fzf"
 # alias vc="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config | fzf"
-# alias vz="fd --type=f -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/zsh | fzf | xargs -r -I {} vm {}"
-# alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} vm {}"
-# alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} vm {}"
-# alias vvm="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/nvim/ | fzf | xargs -r -I {} vm {}"
+# alias vz="fd --type=f -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/zsh | fzf | xargs -r -I {} $EDITOR {}"
+# alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} $EDITOR {}"
+# alias vb="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/bin | fzf | xargs -r -I {} $EDITOR {}"
+# alias ved="fd --type=f --max-depth=1 -H . /home/xfo/git/system/dot/dotfiles/home/xfo/private_dot_config/nvim/ | fzf | xargs -r -I {} $EDITOR {}"
 
-alias vpenv='vm /etc/environment '
-alias vpxd='vm /etc/profile.d/0000-xdg-dirs.sh '
-alias vpvar='vm /etc/profile.d/set-vars.sh '
+alias vpenv="$EDITOR /etc/environment "
+alias vpxd="$EDITOR /etc/profile.d/0000-xdg-dirs.sh "
+alias vpvar="$EDITOR /etc/profile.d/set-vars.sh "
 
-alias vprof='vm ~/.profile '
+alias vprof="$EDITOR ~/.profile "
 
 alias cdcr='cd /home/xfo/git/system/dot/files/root '
 alias cdch='cd /home/xfo/git/system/dot/files/home '
 
-alias vwk='vm /home/xfo/.config/wlr-which-key/config.yaml '
-alias vwh='vm /home/xfo/.config/swhkd/swhkdrc '
+alias vwk="$EDITOR /home/xfo/.config/wlr-which-key/config.yaml "
+alias vwh="$EDITOR /home/xfo/.config/swhkd/swhkdrc "
 
-alias vsd='vm /usr/local/bin/startsway '
-alias vau='vm /home/xfo/.config/paru/paru.conf '
+alias vsd="$EDITOR /usr/local/bin/startsway "
+alias vau="$EDITOR /home/xfo/.config/paru/paru.conf "
 
-alias vsw='vm /home/xfo/.config/sway/config '
-alias vsa='vm /home/xfo/.config/sway/autostart '
-alias vst='vm /home/xfo/.config/sway/theme '
-alias vwof='vm /home/xfo/.config/wofi/config '
+alias vsw="$EDITOR /home/xfo/.config/sway/config "
+alias vsa="$EDITOR /home/xfo/.config/sway/autostart "
+alias vst="$EDITOR /home/xfo/.config/sway/theme "
+alias vwof="$EDITOR /home/xfo/.config/wofi/config "
 
-alias voi="vm /home/xfo/.config/chezmoi/chezmoi.toml "
-alias vtg="vm /home/xfo/.config/topgrade.toml "
+alias voi="$EDITOR /home/xfo/.config/chezmoi/chezmoi.toml "
+alias vtg="$EDITOR /home/xfo/.config/topgrade.toml "
 
-alias vtx='vm /home/xfo/.config/tmux/tmux.conf '
-alias valac='vm /home/xfo/.config/alacritty/alacritty.yml '
-alias vkit='vm /home/xfo/.config/kitty/kitty.conf'
-alias vwez='vm /home/xfo/.config/wezterm/wezterm.lua'
-alias vlg='vm /home/xfo/.config/lazygit/config.yml '
-alias vmus='vm /home/xfo/.config/cmus/rc '
-alias vnm='vm /home/xfo/.config/mutt/muttrc '
-alias vnb='vm /home/xfo/.config/newsboat/config '
-alias vwrpd='vm /home/xfo/.config/warpd/config '
-alias vdnst='vm /home/xfo/.config/dunst/dunstrc '
-alias vrgr='vm /home/xfo/.config/ranger/rc.conf'
-alias vawsm='vm /home/xfo/.config/awesome/rc.lua '
-alias vq='vm /home/xfo/.config/qutebrowser/config.py '
-alias vqa='vm /home/xfo/.config/qutebrowser/quickmarks '
+alias vtx="$EDITOR /home/xfo/.config/tmux/tmux.conf "
+alias valac="$EDITOR /home/xfo/.config/alacritty/alacritty.yml "
+alias vkit="$EDITOR /home/xfo/.config/kitty/kitty.conf"
+alias vwez="$EDITOR /home/xfo/.config/wezterm/wezterm.lua"
+alias vlg="$EDITOR /home/xfo/.config/lazygit/config.yml "
+alias vdus="$EDITOR /home/xfo/.config/cmus/rc "
+alias vnm="$EDITOR /home/xfo/.config/mutt/muttrc "
+alias vnb="$EDITOR /home/xfo/.config/newsboat/config "
+alias vwrpd="$EDITOR /home/xfo/.config/warpd/config "
+alias vdnst="$EDITOR /home/xfo/.config/dunst/dunstrc "
+alias vrgr="$EDITOR /home/xfo/.config/ranger/rc.conf"
+alias vawsm="$EDITOR /home/xfo/.config/awesome/rc.lua "
+alias vq="$EDITOR /home/xfo/.config/qutebrowser/config.py "
+alias vqa="$EDITOR /home/xfo/.config/qutebrowser/quickmarks "
 
-alias vzrc='vm /home/xfo/.config/zsh/.zshrc '
-alias vzpr='vm /home/xfo/.config/zsh/.zprofile '
-alias vzl='vm /home/xfo/.config/zsh/.zlogin '
-alias vza='vm /home/xfo/.config/zsh/config/aliases.zsh '
-alias vzw='vm /home/xfo/.config/zsh/config/widgets.sh '
-alias vzb='vm /home/xfo/.config/zsh/config/bind.zsh'
-alias vze='vm /home/xfo/.config/zsh/config/env.zsh '
-alias vzf='vm /home/xfo/.config/zsh/config/func.zsh '
-alias vzc='vm /home/xfo/.config/zsh/config/comp.zsh '
-alias vzh='vm /home/xfo/.config/zsh/config/hist.zsh '
-alias vzm='vm /home/xfo/.config/zsh/config/misc.zsh '
+alias vzrc="$EDITOR /home/xfo/.config/zsh/.zshrc "
+alias vzpr="$EDITOR /home/xfo/.config/zsh/.zprofile "
+alias vzl="$EDITOR /home/xfo/.config/zsh/.zlogin "
+alias vza="$EDITOR /home/xfo/.config/zsh/config/aliases.zsh "
+alias vzw="$EDITOR /home/xfo/.config/zsh/config/widgets.sh "
+alias vzb="$EDITOR /home/xfo/.config/zsh/config/bind.zsh"
+alias vze="$EDITOR /home/xfo/.config/zsh/config/env.zsh "
+alias vzf="$EDITOR /home/xfo/.config/zsh/config/func.zsh "
+alias vzc="$EDITOR /home/xfo/.config/zsh/config/comp.zsh "
+alias vzh="$EDITOR /home/xfo/.config/zsh/config/hist.zsh "
+alias vzm="$EDITOR /home/xfo/.config/zsh/config/misc.zsh "
 
-alias vvm='vm /home/xfo/.config/nvim/init.lua '
-alias vvmp='vm /home/xfo/.config/nvim/lua/user/plugins.lua '
-alias vvmw='vm /home/xfo/.config/nvim/lua/user/whichkey.lua '
+alias ved="$EDITOR /home/xfo/.config/nvim/init.lua "
+alias vedp="$EDITOR /home/xfo/.config/nvim/lua/user/plugins.lua "
+alias vedw="$EDITOR /home/xfo/.config/nvim/lua/user/whichkey.lua "
 
 #  }}}
 
