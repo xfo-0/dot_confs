@@ -24,10 +24,10 @@ map("n", "<M-C-Left>", ":lua require('Navigator').left()<cr>", { silent = true }
 map("n", "<M-C-Right>", ":lua require('Navigator').right()<cr>", { silent = true })
 
 -- Resize with arrows
-map("n", "<M-S-e>", ":resize +2<cr>", { silent = true })
-map("n", "<M-S-t>", ":resize -2<cr>", { silent = true })
-map("n", "<M-S-o>", ":vertical resize -2<cr>", { silent = true })
-map("n", "<M-S-n>", ":vertical resize +2<cr>", { silent = true })
+map("n", "<M-S-t>", ":resize +2<cr>", { silent = true })
+map("n", "<M-S-e>", ":resize -2<cr>", { silent = true })
+map("n", "<M-S-n>", ":vertical resize -2<cr>", { silent = true })
+map("n", "<M-S-o>", ":vertical resize +2<cr>", { silent = true })
 
 -- Navigate ::hbuffers
 map("n", "<M-o>", ":BufferLineCyclePrev<cr>", { silent = true })
@@ -39,10 +39,6 @@ map("n", "<M-e>", ":BufferLineMovePrev<cr>", { silent = true })
 map("n", "<M-t>", ":BufferLineMoveNext<cr>", { silent = true })
 -- map("n", "<C-Right>", "<Plug>(CybuPrev)", opts)
 -- map("n", "<C-Left>", "<Plug>(CybuNext)", opts)
-
--- Home End remap
-map("n", "<End>", "$")
-map("n", "<Home>", "0")
 
 --    }}}
 ------------------------------------
@@ -66,10 +62,6 @@ vim.api.nvim_set_keymap("v", "y", "ygv<esc>", { silent = true })
 -- Stay in indent mode
 map("v", "<", "<gv")
 map("v", ">", ">gv")
-
--- Home End remap
-map("v", "<End>", "$")
-map("v", "<Home>", "0")
 
 -- Paste over currently selected text without yanking it
 map("v", "p", '"_dP')

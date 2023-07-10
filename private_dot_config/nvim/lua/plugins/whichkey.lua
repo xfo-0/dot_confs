@@ -107,11 +107,9 @@ return {
       }
 
       local nmappings = {
-        ["<C-n>"] = { "<C-w><C-w>", "switch windows" },
+        ["<A-w>"] = { "<C-w><C-w>", "switch windows" },
         ["<C-c>"] = { ":CccPick<cr>", "ccc pick" },
-        -- ['<C-t>'] = { ':NnnPicker %:p:h <cr>', 'nnn' },
-        ["<C-t>"] = { ":Nnn %:p:h<cr>", "xplr" },
-        -- ['<C-t>'] = { ':lua _NNN_TOGGLE<cr>', 'nnn' },
+        ["<A-h>"] = { ":NnnPicker %:p:h<cr>", "nnn" },
         ["<C-s>"] = { ":ISwapNodeWith<cr>", "ISWapNodeWith" },
         ["<C-.>"] = { ":ISwapNode<cr>", "ISWap" },
         ["t"] = { "<Plug>(leap-forward)", "leap forward" },
@@ -119,11 +117,11 @@ return {
         ["h"] = { ":FzfLua buffers<cr>", "buffers (f)" },
         ["H"] = { ':lua require("telescope").load_extension("scope")<cr>', "tabs" },
         ['"'] = { ":FzfLua registers<cr>", "fzf registers" },
-        -- ["'"] = { ":FzfLua marks<cr>", "fzf marks" },
+        ["'"] = { ":FzfLua marks<cr>", "fzf marks" },
         ["-"] = { ":w<cr>", "w" },
-        ["<M-->"] = { ":noa w<cr>", "w" },
-        ["#"] = { ":wq<cr>", "wq" },
-        ["<M-#>"] = { ":qall!<cr>", "qall!" },
+        ["#"] = { ":noa w<cr>", "w" },
+        ["<M-->"] = { ":wq<cr>", "wq" },
+        ["<M-3>"] = { ":qall!<cr>", "qall!" },
         -- ["<M-s>"] = { ":{ last focused buffer } <cr>", "last buf" },
 
         ["<M-j>"] = {
@@ -155,6 +153,10 @@ return {
           r = {
             ":JupyniumKernelRestart<cr>",
             "restart kernel",
+          },
+          x = {
+            ":JupyniumStopSync<cr>",
+            "stop sync",
           },
         },
 
