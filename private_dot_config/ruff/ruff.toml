@@ -2,7 +2,7 @@ line-length = 88
 
 # Enable Pyflakes `E` and `F` codes by default.
 select = ["E", "F"]
-ignore = ["E501", "E402"]
+ignore = ["E501", "F401", "E402", "F403"]
 # "E262", "E261" ?
 show-source = true
 
